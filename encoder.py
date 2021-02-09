@@ -27,7 +27,7 @@ class Encoder(object):
 
     def _format_time(self, fl):
         """
-        Float to string conversion function.
+        Basic float to string conversion using the mathmatic way.
         """
         
         int_str_part, decimal_str_part = str(fl).split(".")
