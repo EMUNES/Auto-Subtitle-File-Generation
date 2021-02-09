@@ -1,0 +1,12 @@
+.vscode
+
+__pycache__
+
+backup/
+
+src-*
+
+*.wav
+*.pth
+
+events.out*
