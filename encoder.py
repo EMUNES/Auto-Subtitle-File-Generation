@@ -1,5 +1,5 @@
 """
-The middleware which parses the .csv file from inference.
+Parses the .csv file from inference output and generate subtitle file.
 """
 
 import pandas as pd
