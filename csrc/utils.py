@@ -29,9 +29,10 @@ class TrainingDirs(object):
     
     def __init__(self, dsname: str, pre_test: bool) -> None:
         super().__init__()
-        ROOT = Path("../")
+        ROOT = Path("./")
         INPUT_ROOT = ROOT / 'data'
         TARGET_AUDIO_DIR = INPUT_ROOT / dsname
+        print(f"Working with dataset under {TARGET_AUDIO_DIR}.")
         assert os.path.exists(TARGET_AUDIO_DIR), "Input dataset folder does not exist."
         
         self.dataset_folder = TARGET_AUDIO_DIR
