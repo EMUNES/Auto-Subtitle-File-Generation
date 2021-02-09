@@ -6,6 +6,8 @@ backup/
 
 src-*
 
+LOG.md
+
 *.wav
 *.pth
 
