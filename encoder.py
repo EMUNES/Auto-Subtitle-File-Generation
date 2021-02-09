@@ -265,7 +265,7 @@ class SRTEncoder(Encoder):
         return formatted_str_time
 
     @property
-    def events(self):
+    def events(self) -> list:
         event_collections = []
         
         for (s, e) in zip(self.start_series, self.end_series):
