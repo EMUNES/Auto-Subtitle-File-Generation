@@ -12,3 +12,5 @@ LOG.md
 *.pth
 
 events.out*
+
+*.ipynb
