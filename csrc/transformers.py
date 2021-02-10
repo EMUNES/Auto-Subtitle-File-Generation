@@ -4,7 +4,7 @@ Audio augmentations.
 Those augmentation methods should not change the length of the audio file.
 """
 
-from audiomentations import Compose, AddGaussianNoise, AddGaussianSNR, PitchShift, AddBackgroundNoise
+from audiomentations import Compose, AddGaussianNoise, AddGaussianSNR, PitchShift
 
 BaseAug = Compose([
     AddGaussianNoise(min_amplitude=0.001, max_amplitude=0.015, p=0.3),
