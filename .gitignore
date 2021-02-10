@@ -19,6 +19,10 @@ INTRO.md
 *.wav
 *.pth
 src-*
+*.csv
+*.ass
+*.srt
+*.ssa
 
 # debug scripts
 *.ipynb
