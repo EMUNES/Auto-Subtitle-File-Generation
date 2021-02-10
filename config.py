@@ -90,3 +90,11 @@ class SSourceConfig(object):
     
     content = "xxx"
     
+
+class PostProcessConfig(object):
+    
+    loose_dialogue_threshold = 0.5
+    loose_dialogue_appendix = 0.1
+    
+    break_period = 0.1
+    

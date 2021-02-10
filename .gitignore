@@ -1,18 +1,24 @@
+# vscode editor cache
 .vscode
-
 __pycache__
 
+# project backup folder
 backup/
 
-src-*
 
+# logs
+events.out*
+*checkpoint*
+log.txt
+
+# docs that need no record
 LOG.md
+INTRO.md
 
+# static file types
 *.wav
 *.pth
+src-*
 
-events.out*
-
+# debug scripts
 *.ipynb
-
-INTRO.md
