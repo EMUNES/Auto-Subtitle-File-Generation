@@ -32,18 +32,4 @@ class DatasetConfig(object):
     dataset_audio_format = "wav" 
     
     sub_encoding = "utf-8" # recommanded
-
-class InferenceConfig(object):
-    """
-    Configurations for Inference.
     
-    Attributes: 
-        period(int): Clip length for inference loop.
-        coding_map(dict): Tag encoding. DO NOT change.
-        threshold(float): Threshold for picking speech (0~1).
-    """
-    
-    coding_map = {
-        0: "non-speech",
-        1: "speech",
-    }

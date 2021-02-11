@@ -98,3 +98,13 @@ class PostProcessConfig(object):
     
     break_period = 0.1
     
+class InferenceConfig(object):
+    
+    best_around_period = 1
+    
+    threshold = 0.8
+    
+    coding_map = {
+        0: "non-speech",
+        1: "speech",
+    }
