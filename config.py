@@ -94,10 +94,12 @@ class SSourceConfig(object):
 
 class PostProcessConfig(object):
     
-    loose_dialogue_threshold = 0.5
-    loose_dialogue_appendix = 0.1
+    standard_dialogure_break = 0.1
     
-    break_period = 0.1
+    loose_dialogue_threshold = 2 * standard_dialogure_break
+    loose_dialogue_delay = loose_dialogue_threshold / 5
+    
+    max_sigle_speech_length = 1
     
 class InferenceConfig(object):
     
