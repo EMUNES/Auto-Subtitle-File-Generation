@@ -8,6 +8,7 @@ from csrc.configurations import DatasetConfig as DC
 from csrc.configurations import ModelConfig as MC
 from csrc.dataset import PANNsDataset
 from csrc.models import PANNsCNN14Att, AttBlock
+from inference.post import SpeechSeries
 
 # Those configurations are from csrc configurations and should not be altered here.
 ### Those parameters are used for standard clip inference not for breakpoint timestamp.
@@ -110,7 +111,7 @@ class Pannscnn14attInferer():
     def get_breakpoint(self):
         pass
         
-def get_inference(targ_file_path, params_path, fname, output_folder="inference", short_clip=0, device=None, inferer=None):
+def get_inference(targ_file_path, params_path, fname, post_process=True, output_folder="inference", short_clip=0, device=None, inferer=None):
     output = None
     
     if torch.cuda.is_available():
@@ -133,12 +134,18 @@ def get_inference(targ_file_path, params_path, fname, output_folder="inference",
     if short_clip:
         output = model(y, params_path, period=short_clip, device=device).get_breakpoint()
         print(f"Output breakpoint for short clip: {output}\n")
-    else: 
+    else:
         output = model(y, params_path, device=device).make_inference_result()
         print(f"Output: {len(output)} breaks.\n")
         prediction_df = pd.DataFrame(output)
-        prediction_df[prediction_df.speech_recognition=="speech"].to_csv(out_file, index=False)
+        output_df = prediction_df[prediction_df.speech_recognition=="speech"]
+        
+        if post_process:
+            print("Post process applied.\n")
+            output_df = SpeechSeries(output_df).series
+            
+        output_df.to_csv(out_file, index=False)
         prediction_df.to_csv(out_src_file, index=False)
-        print(f"Output file generated, see: {output_folder}.\n")
+        print(f"Inference output file generated (This is not the final output), see: {output_folder}.\n")
     
     return output

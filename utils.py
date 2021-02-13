@@ -41,7 +41,7 @@ def mono_load(path, sr=32000, mono=True):
     
     end = time.time()
     
-    print(f"Loading completed. Cost {(end-start):.2f}s")
+    print(f"Loading completed. Cost {(end-start):.2f}s\n")
     
     return y, c 
     

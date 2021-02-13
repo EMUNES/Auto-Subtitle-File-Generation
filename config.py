@@ -94,10 +94,10 @@ class SSourceConfig(object):
 
 class PostProcessConfig(object):
     
-    standard_dialogure_break = 0.1
+    standard_dialogue_break = 0.1
     
-    loose_dialogue_threshold = 2 * standard_dialogure_break
-    loose_dialogue_delay = loose_dialogue_threshold / 5
+    loose_dialogue_threshold = 2 * standard_dialogue_break
+    loose_dialogue_delay = loose_dialogue_threshold / 3
     
     max_sigle_speech_length = 1
     
