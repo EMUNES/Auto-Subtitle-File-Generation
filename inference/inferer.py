@@ -129,6 +129,7 @@ def get_inference(targ_file_path, params_path, fname, output_folder="inference",
     targ_file_path = extract_audio(targ_file_path, format=DC.dataset_audio_format) if is_video else targ_file_path
     y, _ = mono_load(targ_file_path)
     
+    print("Using model to generate output...\n")
     if short_clip:
         output = model(y, params_path, period=short_clip, device=device).get_breakpoint()
         print(f"Output breakpoint for short clip: {output}\n")

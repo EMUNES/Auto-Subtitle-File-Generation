@@ -17,6 +17,7 @@ Valid input such as: 'sample.ass', 'sample', 'sample.srt'. No quote mark needed.
     print("The output subtitle file will be under result folder under this project root folder.\
 输出最终字幕文件将在项目根目录的result文件夹下，感谢您的使用。\n\n")
     
-    print("Start generating procedure.This may take a few minutes.\n开始运行，这可能会让您等待几分钟。")
+    print("Start generating procedure.This may take a few minutes.\n开始运行，这可能会让您等待几分钟。\n")
+    print("如果你的工作机器上没有nvidia GPU和cuda环境支持，这个阶段将会花费更长一点的时间。")
     generator(targ=target_file_name, fname=output_file_name)
     
