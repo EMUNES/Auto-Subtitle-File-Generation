@@ -9,6 +9,8 @@ from csrc.configurations import ModelConfig as MC
 from csrc.dataset import PANNsDataset
 from csrc.models import PANNsCNN14Att, AttBlock
 
+# Those configurations are from csrc configurations and should not be altered here.
+### Those parameters are used for standard clip inference not for breakpoint timestamp.
 PERIOD = IC.best_around_period
 THRESHOLD = IC.threshold
 CODING = IC.coding_map 

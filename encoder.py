@@ -195,7 +195,7 @@ class ASSEncoder(Encoder):
         if (not ".ssa" in file_name) or (not ".ass" in file_name):
             path = path + (".ass" if v4plus_styles else ".ssa")
         
-        with open(path, mode="w", encoding="utf-8") as f:
+        with open(path, mode="w", encoding=encoding) as f:
             for i in self.script_info:
                 f.write(i)
                 f.write("\n")

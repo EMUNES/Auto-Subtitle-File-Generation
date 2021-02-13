@@ -3,7 +3,8 @@ Configurations for dataset and inference.
 
 Do ont include training configurations.
 """
-
+# Use which model params to inference and get output in the program.
+INFERENCE_PARAMS_PATH = "./model/train.6_full.pth"
 
 class SSourceConfig(object):
     """
