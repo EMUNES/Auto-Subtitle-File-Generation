@@ -36,7 +36,7 @@ def mono_load(path, sr=32000, mono=True):
     
     start = time.time()
     
-    print(f"Loading file: {path}")
+    print(f"Loading file: {path}\n")
     y, c = librosa.load(path, sr=sr, mono=mono)
     
     end = time.time()

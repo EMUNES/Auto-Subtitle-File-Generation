@@ -16,9 +16,10 @@ Valid input such as: 'sample.ass', 'sample', 'sample.srt'. No quote mark needed.
 你希望的输出文件名称和格式（默认是current.ass）\n\
 合法的文件名如：'sample.ass', 'sample', 'sample.srt'，不需要引号:\n")
     
-    print("\nStart generation procedure.This may takes a few minutes.\n开始运行，这可能会让您等待几分钟。\n")
-
-    print("如果你的工作机器上没有nvidia GPU和cuda环境支持，系统将使用CPU，会花费更长一点的时间,。\n")
+    print("\nIf the CLI stuck at Loading procudure for a long time. Try press 'Enter', and if no respond then wait longer.")
+    print("如果控制台卡在读取文件阶段长时间不动，尝试按一下'Enter'键，若仍无反应则继续等待加载完成。")
+    print("If you have nvidia GPU and CUDA on your machine, it will take less to run. (default device cuda0. Otherwise use CPU)")
+    print("如果你的设备上拥有nvidia CPU和CUDA环境，花费的时间会更少。（默认使用cuda0，然后使用CPU）")
     generator(targ=target_file_name, fname=output_file_name)
     print("The output subtitle file is under result folder under this project root folder. Thanks for using!\n\
 输出最终字幕文件将在项目根目录的result文件夹下，感谢您的使用。\n")

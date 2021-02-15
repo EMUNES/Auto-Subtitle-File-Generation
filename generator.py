@@ -9,7 +9,7 @@ from encoder import ASSEncoder, SRTEncoder
 from config import INFERENCE_PARAMS_PATH
 
 # TODO:Add hooks for post process.
-def generator(targ, fname: str="current", sub_format: str="ass", output_folder="./inference/output"):
+def generator(targ, fname: str="current", sub_format: str="ass", output_folder="./inf/output"):
     get_inference(targ_file_path=targ,
                   params_path=INFERENCE_PARAMS_PATH,
                   fname=fname,

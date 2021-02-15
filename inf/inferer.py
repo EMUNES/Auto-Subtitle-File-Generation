@@ -111,7 +111,7 @@ class Pannscnn14attInferer():
     def get_breakpoint(self):
         pass
         
-def get_inference(targ_file_path, params_path, fname, post_process=True, output_folder="inference", short_clip=0, device=None, inferer=None):
+def get_inference(targ_file_path, params_path, fname, post_process=True, output_folder="inf", short_clip=0, device=None, inferer=None):
     output = None
     
     if torch.cuda.is_available():
@@ -139,10 +139,10 @@ def get_inference(targ_file_path, params_path, fname, post_process=True, output_
         print(f"Output: {len(output)} breaks.\n")
         prediction_df = pd.DataFrame(output)
         output_df = prediction_df[prediction_df.speech_recognition=="speech"]
-        
+
         if post_process:
-            print("Post process applied.\n")
             output_df = SpeechSeries(output_df).series
+            print("Post process applied.\n")
             
         output_df.to_csv(out_file, index=False)
         prediction_df.to_csv(out_src_file, index=False)

@@ -94,7 +94,10 @@ class SpeechSeries(object):
             # TODO: Need hooks to implement in-clip break.
             if cur_time_gap > PPC.max_sigle_speech_length:
                 pass
-
+            
+            if speech.next == None:
+                break
+            
             speech = speech.next
 
         speech.offset += PPC.loose_dialogue_delay
