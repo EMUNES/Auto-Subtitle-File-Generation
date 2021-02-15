@@ -100,7 +100,7 @@ class SpeechSeries(object):
         speech.offset += PPC.loose_dialogue_delay
 
     @property
-    def series(self):
+    def series(self) -> pd.DataFrame:
         self._post_process()
 
         speech = self._head_node
