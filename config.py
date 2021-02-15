@@ -6,6 +6,47 @@ Do ont include training configurations.
 # Use which model params to inference and get output in the program.
 INFERENCE_PARAMS_PATH = "./model/train.6_full.pth"
 
+
+class PostProcessConfig(object):
+    """
+    Basic params for postprocess.
+    """
+    
+    # The least break between dialogues.
+    standard_dialogue_break = 0.1
+    
+    # If there is a large gap betweeen dialogues, we extend the subtitle,
+    # giving a slightly more time.
+    loose_dialogue_threshold = 2 * standard_dialogue_break
+    loose_dialogue_delay = loose_dialogue_threshold / 3
+    
+    # TODO: Adust this parameter and use it in postprocess with hooks.
+    # How long does one speech takes to make the program cut it.
+    max_sigle_speech_length = 1
+    
+    
+class InferenceConfig(object):
+    """
+    Important params for predicting the output.
+    """
+    
+    # How long should we make the inference once a clip that can give the best result.
+    ### Default 1 is a good choice for this task.
+    best_around_period = 1
+    
+    # Giving how much we take the period as a dialogue.
+    ### The higher the threshold, the lesser duration for each speech.
+    ### And more breaks in dialogues.
+    threshold = 0.8
+    
+    # The coding map for deep learning model.
+    ### Change this will only cause bugs. I shouldn't write those code here.
+    coding_map = {
+        0: "non-speech",
+        1: "speech",
+    }
+
+
 class SSourceConfig(object):
     """
     Subtitle source configurations.
@@ -91,23 +132,3 @@ class SSourceConfig(object):
     
     content = "xxx"
     
-
-class PostProcessConfig(object):
-    
-    standard_dialogue_break = 0.1
-    
-    loose_dialogue_threshold = 2 * standard_dialogue_break
-    loose_dialogue_delay = loose_dialogue_threshold / 3
-    
-    max_sigle_speech_length = 1
-    
-class InferenceConfig(object):
-    
-    best_around_period = 1
-    
-    threshold = 0.8
-    
-    coding_map = {
-        0: "non-speech",
-        1: "speech",
-    }
