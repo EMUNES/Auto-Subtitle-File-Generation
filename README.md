@@ -1,47 +1,44 @@
-# ASFG - auto subtitle generation
+# ASFG - auto subtitle file generation
 
-This project focuses on how to automatically generate subtitle files from an input audio/video file containing all the timelines for dialogues and human speeches.
+This project focuses on how to automatically generate subtitle **files** from an input audio/video file containing all the timelines for dialogues and human speeches.
 
-## Tasks
+The project is in a primitive phase. Further development will come when I find more time after The Lunar New Year.
 
-### SED recognition
+## A handy guide first
 
-- use **Sound Event Detection** based on deep learning model (PANNs) to recognize **speech** from **streaming** audio files. Each detected speech clip will ouput like (onset, endset, speech class)
+Currently, you need to build the python environment to run and use this program.
 
-### aggregation
+1. (Install python on your machine.)
+2. Download the project code on your machine.
+3. Download and Extract model under *models* folder. See README.md under *models* folder.
+4. (Open your terminal or cmd under the project root folder and type`python install -r requirements.txt`. Install pytorch following its official website if it fails to download torch.)
+5. Open your terminal or cmd under the project root folder and type `python run.py`. This will evoke an old-style script to accept the absolute path of your audio/video file, and offer a choice to name the output file.
+6. Get your subtitle file under *results* folder under the project root folder.
 
-Aggregate final speech from the ouput. Generate corresponding subtitle file type for direct usuage
+Most audio/video file types are supported (Check python module *librosa* and *moviepy* for details) and you can get subtitles in **ass** or **srt** format. And, no tran
 
-## Datasets
+## A better introduction
 
-Make the dataset automatically.
+ASFG is based on deep learning technique for Sound Event Detection, which is a task to recognize different kinds of sounds in audio and make predictions containing the timeline for that sound event, using only weak label data. ASFG uses pytorch for deep learning, and contains many other parts and modules to make the project work.
 
-## Utils
+The deep learning procedure is open, which means anyone can train and get your own model - from building the dataset to fine-tuning the model, ASFG has prepared middlewares and algorithms all you need to make deep learning work immediately. Only three procedures you mainly need to pay attention to:
 
-win10 + python environment + pytorch & pytorch ecosystem + vscode
+- Get data source (And ASFG can build dataset for you automatically).
+- Choose models and parts for your training pipeline (under *csrc* folder).
+- Tune your params as you like.
 
-## Challenges
+(I will upload another project holding scripts and documentation for deep learning process.)
 
-This project contains many challenges.
+## A sample to show
 
-### Speech recognition
 
-Speech recognition is the core for the project. But this is not so much a bigger challege if not for perfect accuracy.
 
-### Speech separation
+There is still much to improve in real time cases. See*TODO.md* in the project folder for details.
 
-Speech separation is extremely challenging in this project. As dialogues can happen real fast and just look like a consistent speech all together istead of different people talking. Solve this and the project will be a complete success.
+## Big thanks!!!
 
-### Data corruption
+Great thanks to kaggle user [Hidehise Arai](https://www.kaggle.com/hidehisaarai1213) from whom I learn to build my baseline for SED, which I use heavenly for deep learning in this project too.
 
-- As the datasets for training are automatically generated. It's possible that in subtitle files, sometimes clips that contains no speech will be tagged by the author.
-- Differenct people tag the subtitles differently.
+The pretrained model I use for this project is from: [PANNs: Large-Scale Pretrained Audio Neural Networks for Audio Pattern Recognition](https://arxiv.org/abs/1912.10211).
 
-## Thanks
-
-Thanks to following (models&pretrained weights&open source code):
-
-- PANNs.
-- Kaggle competitioner.
-
-All credits to them! I'll be unable to come up with this project without their great idea and wonderful work.
+All credits to them. 
