@@ -1,8 +1,12 @@
 # TODO
 
-This project needs many more improvement to make it better!
+This project needs many more improvement to make it better! I've focused more on building parts and make connections between them to become a whole project that works. For deep learning, I may not do enough. I will make those improments in long term
 
 ## Problems to solve
+
+### Some time it's not so accurate for speech recognition
+
+Well, so much can do to improve that I will escape this part here...
 
 ### can't accurately recognize the ending and beginning of speech
 
