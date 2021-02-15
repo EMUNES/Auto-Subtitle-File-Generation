@@ -3,7 +3,7 @@
 ## This folder contains all the row materials for generating your dataset
 
 - A supported audio/video file and its corresponding subtitle file should be in the same folder.
-- Rename your audio/video file to *VideoName-LanguageType* for asg to build dataset for you. For example: "ab-eng.ac3" can stand for the audio file of *American Beauty* in English. You don't need to name your subtitle files with language type.
+- Rename your audio/video file to *VideoName-LanguageType* for ASFG to build dataset for you. For example: "ab-eng.ac3" can stand for the audio file of *American Beauty* in English. You don't need to name your subtitle files with language type.
 
 ## Notice
 

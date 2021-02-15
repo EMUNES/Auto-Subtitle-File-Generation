@@ -5,7 +5,7 @@ Simple script to take input and run on CLI.
 from generator import generator
 
 if __name__ == '__main__':
-    print("Welcome to ASG! Contact author: hzb000113@qq.com\n\
+    print("Welcome to ASFG! Contact author: hzb000113@qq.com\n\
 欢迎尝试！联系作者 - hzb000113@qq.com\n")
     
     target_file_name = input("The absolute path for your audio/video:\n\

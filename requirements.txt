@@ -1,0 +1,12 @@
+albumentations==0.5.2
+numpy==1.19.5
+SoundFile==0.10.3.post1
+colorednoise==1.1.1
+pandas==1.2.1
+audiomentations==0.15.0
+moviepy==1.0.3
+catalyst==20.12
+librosa==0.8.0
+torch==1.7.1
+PyYAML==5.4.1
+scikit_learn==0.24.1

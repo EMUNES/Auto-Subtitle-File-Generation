@@ -59,7 +59,7 @@ class ASSEncoder(Encoder):
         events: Subtitle events. 
     """
     
-    def __init__(self, df: pd.DataFrame, lang_style: str, title: str="ASG", x=384, y=288) -> None:
+    def __init__(self, df: pd.DataFrame, lang_style: str, title: str="ASFG", x=384, y=288) -> None:
         super().__init__(df)
         self.lang_style = lang_style
         self.title = title

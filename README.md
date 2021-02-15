@@ -1,4 +1,4 @@
-# ASG - auto subtitle generation
+# ASFG - auto subtitle generation
 
 This project focuses on how to automatically generate subtitle files from an input audio/video file containing all the timelines for dialogues and human speeches.
 

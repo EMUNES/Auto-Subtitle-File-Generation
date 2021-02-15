@@ -66,7 +66,7 @@ class SSourceConfig(object):
     
     headers = {
         "Title": None,
-        "Original Script": "ASG",
+        "Original Script": "ASFG",
         "PlayResX": None,
         "PlayResY": None,
         "Timer": 100.0000,

@@ -25,6 +25,6 @@ This project needs many more improvement to make it better!
 
 ## future development
 
-ASG should be able to take your translations and break them into slices and put them into the subtitle file it generates. This function is very useful and will be the next goal after current functionalities are stable and effective.
+ASFG should be able to take your translations and break them into slices and put them into the subtitle file it generates. This function is very useful and will be the next goal after current functionalities are stable and effective.
 
 ## And may more...
