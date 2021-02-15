@@ -36,7 +36,7 @@ class InferenceConfig(object):
     
     # Giving how much we take the period as a dialogue.
     ### The higher the threshold, the lesser duration for each speech.
-    ### And more breaks in dialogues.
+    ### And more breaks for dialogues.
     threshold = 0.8
     
     # The coding map for deep learning model.
