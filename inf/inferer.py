@@ -8,7 +8,7 @@ from csrc.configurations import DatasetConfig as DC
 from csrc.configurations import ModelConfig as MC
 from csrc.dataset import PANNsDataset
 from csrc.models import PANNsCNN14Att, AttBlock
-from inference.post import SpeechSeries
+from inf.post import SpeechSeries
 
 # Those configurations are from csrc configurations and should not be altered here.
 ### Those parameters are used for standard clip inference not for breakpoint timestamp.

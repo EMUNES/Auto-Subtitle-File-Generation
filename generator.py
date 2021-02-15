@@ -4,7 +4,7 @@ Out of the box pipeline to generator the final result.
 
 import pandas as pd
 
-from inference.inferer import get_inference
+from inf.inferer import get_inference
 from encoder import ASSEncoder, SRTEncoder
 from config import INFERENCE_PARAMS_PATH
 

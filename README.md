@@ -1,6 +1,6 @@
 # ASG - auto subtitle generation
 
-This project focuses on how to automatically generate subtitle files from an input audio/video file, serving an easy end-to-end service.
+This project focuses on how to automatically generate subtitle files from an input audio/video file containing all the timelines for dialogues and human speeches.
 
 ## Tasks
 

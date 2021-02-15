@@ -1,1 +1,1 @@
-# Here sits the logs and saved models for training output
+# Here sits logs and saved models of training process
