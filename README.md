@@ -2,11 +2,19 @@
 
 This project focuses on how to automatically generate subtitle **files** from an input audio/video file containing all the timelines for dialogues and human speeches.
 
-The project is in a primitive phase. Further development will come when I find more time after The Lunar New Year.
+The project is in a primitive phase :sweat_smile: Further development will come when I find more time after The Lunar New Year.
+
+how it seems :point_down:	
+
+![sample](.github/sample.gif)
+
+(In case you don't know why I put the GIF here, the small 'xxx' overlapping are from the output subtitle file generated using this project which shows it konws when people talk. Yes, of course, I've choose the good part :smirk:. Bee patient to see when it's fully loaded :smirk:) 
+
+There is still much to improve in real time cases. See *TODO.md* in the project folder for details.
 
 ## A handy guide first
 
-Currently, you need to build the python environment to run and use this program.
+Currently, you need to build the python environment to run and use this program :sweat:	
 
 1. (Install python on your machine.)
 2. Download the project code on your machine.
@@ -21,7 +29,7 @@ Most audio/video file types are supported (Check python module *librosa* and *mo
 
 ASFG is based on deep learning technique for Sound Event Detection, which is a task to recognize different kinds of sounds in audio and make predictions containing the timeline for that sound event, using only weak label data. ASFG uses pytorch for deep learning, and contains many other parts and modules to make the project work.
 
-The deep learning procedure is open, which means anyone can train and get your own model - from building the dataset to fine-tuning the model, ASFG has prepared middlewares and algorithms all you need to make deep learning work immediately. Only three procedures you mainly need to pay attention to:
+The deep learning procedure is **open**, which means anyone can train and get your own model - from building the dataset to fine-tuning the model, ASFG has prepared middlewares and algorithms all you need to make deep learning work immediately. Only three procedures you mainly need to pay attention to:
 
 - Get data source (And ASFG can build dataset for you automatically).
 - Choose models and parts for your training pipeline (under *csrc* folder).
@@ -29,16 +37,10 @@ The deep learning procedure is open, which means anyone can train and get your o
 
 (I will upload another project holding scripts and documentation for deep learning process.)
 
-## A sample to show
-
-
-
-There is still much to improve in real time cases. See*TODO.md* in the project folder for details.
-
 ## Big thanks!!!
 
 Great thanks to kaggle user [Hidehise Arai](https://www.kaggle.com/hidehisaarai1213) from whom I learn to build my baseline for SED, which I use heavenly for deep learning in this project too.
 
 The pretrained model I use for this project is from: [PANNs: Large-Scale Pretrained Audio Neural Networks for Audio Pattern Recognition](https://arxiv.org/abs/1912.10211).
 
-All credits to them. 
+All credits to them :thumbsup:	
