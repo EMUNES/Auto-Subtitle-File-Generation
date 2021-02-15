@@ -1,34 +1,30 @@
 # TODO
 
-This project need more improvement to make it better!
+This project needs many more improvement to make it better!
 
 ## Problems to solve
 
 ### can't accurately recognize the ending and beginning of speech
 
-- inference with smaller clip duration
-- increase the threshold
+- Add more clips to train.
+- Try to build dataset with smaller clip length.
 
 ### can't break the sentense properly
 
-- inference with smaller clip duration
-- increase the threshold
-- add a dedicated hook to handle the result if former are not working
+- Implement hooks to recognize the long clips that needs break and get timestamp for breakpoint. - IN DEVELOPMENT
 
 ### can be especially disrupted by music and animal sound that's near speech
 
-- inference with smaller clip duration
-- increase the threshold
+- Increase the threshold.
+- Find more clips about animal sound when building the dataset.
 
-### the model is always overfitting
+## Other improvements
 
-- change a lighter model. Candidates: dense121 and mobilenet v2.
+- Use a lighter model, such as resNest, denseNet and mobileNet.
+- Ensemble models.
 
-### training time too long locally
+## future development
 
-- use fp16 for training. Try solving fp16 NaN problem by add normalization in model or prevent NaN or Infinite values by using other methods.
+ASG should be able to take your translations and break them into slices and put them into the subtitle file it generates. This function is very useful and will be the next goal after current functionalities are stable and effective.
 
-## Possibles
-
-- change to a binary classification problem
-- dialogues vary much in length, this may cause data imbalance
+## And may more...
