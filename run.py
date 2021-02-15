@@ -1,5 +1,5 @@
 """
-Accept input file path from CLI and call methods for output.
+Simple script to take input and run on CLI.
 """
 
 from generator import generator
