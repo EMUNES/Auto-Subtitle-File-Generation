@@ -4,18 +4,19 @@
 2. Generate training csv file corresponding to the whole dataset
 """
 
+from pathlib import Path
+
+import soundfile as sf
+import numpy as np
+
 from csrc.configurations import DatasetConfig
 from utils import mono_load, vb
 
-import soundfile as sf
-from pathlib import Path
-import numpy as np
-
 def _tagging(clip_ending_second, onsets, offsets):
-    '''Tag the audio by judging whether the clip contains a dialogue.
-    
+    """
+    Tag the audio by judging whether the clip contains a dialogue.
     If the clip contains dialogues in it, we tag it as 1. Otherwise we tag it as 0.
-    '''
+    """
     assert int(clip_ending_second)%DatasetConfig.dataset_clip_time == 0., 'Sorry, there is a length mismatch when trying to tagging the clip.'
     
     tag = 0
