@@ -1,11 +1,8 @@
 # FROM: https://github.com/koukyo1994/kaggle-birdcall-6th-place/blob/master/src/models.py
-# THANKS!
+# THANKS a lot!
 
 """
 Models for training.
-
-Changes and Custimization.
-TODO: Add normalization!!!
 """
 
 import librosa

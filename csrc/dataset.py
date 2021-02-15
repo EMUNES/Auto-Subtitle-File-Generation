@@ -10,7 +10,7 @@ from csrc.configurations import DatasetConfig as DC
 
 PERIOD = 5 
 
-# The only usuable dataset set for now.
+
 class PANNsDataset(data.Dataset):
     def __init__(
             self,

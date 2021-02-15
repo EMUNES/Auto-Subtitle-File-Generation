@@ -1,12 +1,8 @@
 # FROM: https://github.com/koukyo1994/kaggle-birdcall-6th-place/blob/master/src/callbacks.py
-# THANKS!
+# THANKS a lot!
 
 """
-Callback functions for training.
-
-Custimization and modification.
-- add precision for balanced binary classification.
-
+Callback functions for catalyst.
 """
 
 import numpy as np

@@ -1,13 +1,8 @@
-# FROM: https://github.com/koukyo1994/kaggle-birdcall-6th-place/blob/master/src/criterion.py
-# THANKS!
+# Some codes FROM: https://github.com/koukyo1994/kaggle-birdcall-6th-place/blob/master/src/criterion.py
+# THANKS a lot!
 
 """
 Loss functions for training.
-
-Customization and Modifications:
-- change BCELoss to BCEWithLogitsLoss, limiting the loss for multiplication between 0 and 1.
-- safeguard the loss.
-
 """
 
 import torch
