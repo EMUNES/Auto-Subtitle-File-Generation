@@ -29,8 +29,8 @@ class SpeechSeries(object):
         for s in self.df.itertuples():
             node = self._Node(
                 s.speech_recognition,
-                s.start,
-                s.end,
+                s.start + PPC.global_bias, # global shift
+                s.end + PPC.global_bias, # global shift
                 s.max_confidence,
                 s.mean_confidence
             )

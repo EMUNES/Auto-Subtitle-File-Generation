@@ -18,8 +18,11 @@ class PostProcessConfig(object):
     # If there is a large gap betweeen dialogues, we extend the subtitle,
     # giving a slightly more time.
     loose_dialogue_threshold = 2 * standard_dialogue_break
-    loose_dialogue_delay = loose_dialogue_threshold / 3
+    loose_dialogue_delay = loose_dialogue_threshold / 4
     
+    # A bias cause for the detection somehow.
+    global_bias = 0.25
+
     # TODO: Adust this parameter and use it in postprocess with hooks.
     # How long does one speech takes to make the program cut it.
     max_sigle_speech_length = 1
@@ -37,7 +40,7 @@ class InferenceConfig(object):
     # Giving how much we take the period as a dialogue.
     ### The higher the threshold, the lesser duration for each speech.
     ### And more breaks for dialogues.
-    threshold = 0.72
+    threshold = 0.6
     
     # The coding map for deep learning model.
     ### Change this will only cause bugs. I shouldn't write those code here.
