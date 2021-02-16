@@ -8,7 +8,7 @@ how it seems :point_down:
 
 ![sample](.github/sample.gif)
 
-(In case you don't know why I put the GIF here, the small 'xxx' overlapping are from the output subtitle file generated using this project which shows it konws when people talk. Yes, I've choose the good part :smirk:. Bee patient to see when it's fully loaded :smirk:)
+(In case you don't know why I put the GIF here, the small 'xxx' overlapping are from the output subtitle file generated using this project which shows it konws when people talk. Yes, I've choose the good part :smirk:. Be patient to see when it's fully loaded :smirk:)
 
 There is still much to improve in real time cases. See *TODO.md* in the project folder for details.
 
