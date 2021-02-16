@@ -4,17 +4,17 @@ This project focuses on how to automatically generate subtitle **files** from an
 
 The project is in a primitive phase :sweat_smile: Further development will come when I find more time after The Lunar New Year.
 
-how it seems :point_down:	
+how it seems :point_down:
 
 ![sample](.github/sample.gif)
 
-(In case you don't know why I put the GIF here, the small 'xxx' overlapping are from the output subtitle file generated using this project which shows it konws when people talk. Yes, I've choose the good part :smirk:. Bee patient to see when it's fully loaded :smirk:) 
+(In case you don't know why I put the GIF here, the small 'xxx' overlapping are from the output subtitle file generated using this project which shows it konws when people talk. Yes, I've choose the good part :smirk:. Bee patient to see when it's fully loaded :smirk:)
 
 There is still much to improve in real time cases. See *TODO.md* in the project folder for details.
 
 ## A handy guide first
 
-Currently, you need to build the python environment to run and use this program :sweat:	
+Currently, you need to build the python environment to run and use this program :sweat:
 
 1. (Install python on your machine.)
 2. Download the project code on your machine.
@@ -43,4 +43,4 @@ Great thanks to kaggle user [Hidehise Arai](https://www.kaggle.com/hidehisaarai1
 
 The pretrained model I use for this project is from: [PANNs: Large-Scale Pretrained Audio Neural Networks for Audio Pattern Recognition](https://arxiv.org/abs/1912.10211).
 
-All credits to them :thumbsup:	
+All credits to them :thumbsup:
