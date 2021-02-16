@@ -1,0 +1,28 @@
+# editor and IDE cache
+.vscode
+.idea
+__pycache__
+
+# project backup folder
+backup/
+
+# logs
+events.out*
+*checkpoint*
+log.txt
+
+# docs that need no record
+LOG.md
+INTRO.md
+
+# static file types
+*.wav
+*.pth
+src-*
+*.csv
+*.ass
+*.srt
+*.ssa
+
+# debug scripts
+*.ipynb
