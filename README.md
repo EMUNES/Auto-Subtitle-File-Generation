@@ -8,7 +8,7 @@ how it seems :point_down:
 
 ![sample](.github/sample.gif)
 
-(In case you don't know why I put the GIF here, the small 'xxx' overlapping are from the output subtitle file generated using this project which shows it konws when people talk. Yes, I've choose the good part :smirk:. Be patient to see when it's fully loaded :smirk:)
+(In case you don't know why I put the GIF here, the small 'xxx' overlapping are from the output subtitle file generated using this project which shows it konws when people talk. Yes, I've choose the good part :smirk:. Be patient to see when it's fully loaded :smile:)
 
 There is still much to improve in real time cases. See *TODO.md* in the project folder for details.
 
@@ -23,7 +23,7 @@ Currently, you need to build the python environment to run and use this program 
 5. Open your terminal or cmd under the project root folder and type `python run.py`. This will evoke an old-style script to accept the absolute path of your audio/video file, and offer a choice to name the output file.
 6. Get your subtitle file under *results* folder under the project root folder.
 
-Most audio/video file types are supported (Check python module *librosa* and *moviepy* for details) and you can get subtitles in **ass** or **srt** format. And, no tran
+Most audio/video file types are supported (Check python module *librosa* and *moviepy* for details) and you can get subtitles in **ass** or **srt** format.
 
 ## A better introduction
 
