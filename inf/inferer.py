@@ -111,7 +111,7 @@ class Pannscnn14attInferer():
     def get_breakpoint(self):
         pass
         
-def get_inference(targ_file_path, params_path, fname, post_process=True, output_folder="inf", short_clip=0, device=None, inferer=None):
+def get_inference(targ_file_path, params_path, fname, post_process=True, output_folder="inf/output", short_clip=0, device=None, inferer=None):
     output = None
     
     if torch.cuda.is_available():

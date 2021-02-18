@@ -48,9 +48,10 @@ class SpeechSeries(object):
     def _merge_node(self, n1, n2):
         assert n2.onset >= n1.offset, "Node input order reversed."
         n1.offset = n2.offset
-        n1.next = n2.next
+        n1.next = n2.next 
+        return n1
 
-    # TODO: Used With hooks.
+    # TODO: Used with hooks.
     def _break_node(self, n, timestamp: float):
         new_offset = timestamp - PPC.break_period/2
         new_onset = timestamp + PPC.break_period/2
@@ -68,11 +69,11 @@ class SpeechSeries(object):
         new_node.next = n.next
         n.next = new_node
 
-    def _post_process(self):
+    def _post_process(self, n):
         """
-        Better formatted source for encoder after passing through the algorithm.
+        Post process based on linked list.
         """
-        speech = self._head_node
+        speech = n
 
         while speech.next != None:
             # Increase the offset properly.
@@ -83,20 +84,18 @@ class SpeechSeries(object):
             if bet_time_gap >= PPC.loose_dialogue_threshold:
                 speech.offset += PPC.loose_dialogue_delay
             # If the gap between speeches is so tight, merge them together. 
-            elif bet_time_gap < PPC.standard_dialogue_break/2:
-                self._merge_node(speech, speech.next)
+            elif (bet_time_gap <= PPC.standard_dialogue_break/3) or bet_time_gap==0.0:
+                speech = self._merge_node(speech, speech.next)
+                continue
             # If the dialogue are not loose but also not tight enough to merge them together, make the break standard.
-            else:
-                bias = (PPC.standard_dialogue_break -bet_time_gap) / 2
-                speech.offset -= bias / 2
-                speech.next.onset += bias / 2
+            elif (bet_time_gap > PPC.standard_dialogue_break/3) and (bet_time_gap < PPC.standard_dialogue_break):
+                residue = PPC.standard_dialogue_break - bet_time_gap
+                speech.offset -= residue / 2
+                speech.next.onset += residue / 2
 
-            # TODO: Need hooks to implement in-clip break.
+            # TODO: Need hooks to implement break point.
             if cur_time_gap > PPC.max_sigle_speech_length:
                 pass
-            
-            if speech.next == None:
-                break
             
             speech = speech.next
 
@@ -104,9 +103,11 @@ class SpeechSeries(object):
 
     @property
     def series(self) -> pd.DataFrame:
-        self._post_process()
-
         speech = self._head_node
+        assert speech != None, "Nothing valid from inference output. Please check /inf/output/yourOutputFile."
+        
+        self._post_process(speech)
+        
         columns = self.df.columns
         df = pd.DataFrame(index=None, columns=columns)
         
