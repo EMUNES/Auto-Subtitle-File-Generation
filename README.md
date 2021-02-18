@@ -35,7 +35,7 @@ The deep learning procedure is **open**, which means anyone can train and get yo
 - Choose models and parts for your training pipeline (under *csrc* folder).
 - Tune your params as you like.
 
-(I will upload another project holding scripts and documentation for deep learning process.)
+Check [ASFG-train](https://github.com/EMUNES/ASFG-train)
 
 ## Big thanks!!!
 
