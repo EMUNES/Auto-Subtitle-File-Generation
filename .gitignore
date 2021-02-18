@@ -26,3 +26,6 @@ src-*
 
 # debug scripts
 *.ipynb
+
+# show some examples
+!result-examples/The-Invisible-Man-2020.ass
