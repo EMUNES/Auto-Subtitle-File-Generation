@@ -1,5 +1,7 @@
 # ASFG - auto subtitle file generation
 
+The Chinese version doc [here](https://blog.csdn.net/weixin_44145222/article/details/113820454).
+
 This project focuses on how to automatically generate subtitle **files** from an input audio/video file containing all the timelines for dialogues and human speeches.
 
 The project is in a primitive phase :sweat_smile: Further development will come when I find more time after The Lunar New Year.
