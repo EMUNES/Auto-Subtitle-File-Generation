@@ -2,6 +2,7 @@ import pandas as pd
 
 from config import PostProcessConfig as PPC
 
+
 class SpeechNode(object):
     def __init__(self, cat:str="speech", onset:float=0, offset:float=0, mac:float=0, mec:float=0) -> None:
         self.cat = cat
@@ -11,6 +12,7 @@ class SpeechNode(object):
         self.mec = mec
 
         self.next = None
+        
         
 class SpeechSeries(object):
     def __init__(self, df: pd.DataFrame) -> None:
