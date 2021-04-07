@@ -103,9 +103,16 @@ def extract_audio(file_path, format: str="wav"):
     mv_name = str(file_path).split("/")[-1].split(".")[0]
     mv_audio_file = Path(file_path).parent / f"{mv_name}.{format}"
     
-    mv.audio.write_audiofile(mv_audio_file)
-    
-    print(f"Extraction Successful! Writing {mv_audio_file.stat().st_size} in {mv_audio_file}.")
+    # A potential error for moviepy to resolve system Path could trigger AttributeError.
+    # We catch the error and then use string for movie py to resolve the file path.
+    # This error occurs on Windows.
+    try:
+        mv.audio.write_audiofile(mv_audio_file)
+    except AttributeError:
+        print("\nNote: Moviepy failed to resolve your video path. Currently Use Path as string for moviepy to work.\n")
+        mv.audio.write_audiofile(str(mv_audio_file))
+     
+    print(f"Extraction Successful! Writing {Path(mv_audio_file).stat().st_size} in {mv_audio_file}.")
     
     return mv_audio_file
 
