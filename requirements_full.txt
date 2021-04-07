@@ -1,0 +1,94 @@
+albumentations==0.5.2
+apex @ file:///D:/bld/nvidia-apex_1606156195516/work
+appdirs==1.4.4
+atomicwrites==1.4.0
+attrs @ file:///tmp/build/80754af9/attrs_1604765588209/work
+audiomentations==0.15.0
+audioread==2.1.9
+backcall @ file:///home/ktietz/src/ci/backcall_1611930011877/work
+catalyst==20.12
+certifi==2020.12.5
+cffi==1.14.4
+chardet==4.0.0
+colorama @ file:///tmp/build/80754af9/colorama_1607707115595/work
+colorednoise==1.1.1
+cycler==0.10.0
+decorator @ file:///home/ktietz/src/ci/decorator_1611930055503/work
+docopt==0.6.2
+efficientnet-pytorch==0.7.0
+fastprogress==1.0.0
+ffmpeg-python==0.2.0
+future @ file:///D:/bld/future_1610147454374/work
+idna==2.10
+imageio==2.9.0
+imageio-ffmpeg==0.4.3
+imgaug==0.4.0
+iniconfig @ file:///home/linux1/recipes/ci/iniconfig_1610983019677/work
+ipykernel @ file:///C:/ci/ipykernel_1596190155316/work/dist/ipykernel-5.3.4-py3-none-any.whl
+ipython @ file:///C:/ci/ipython_1612212935303/work
+ipython-genutils @ file:///tmp/build/80754af9/ipython_genutils_1606773439826/work
+jedi==0.17.0
+joblib @ file:///tmp/build/80754af9/joblib_1607970656719/work
+jupyter-client @ file:///tmp/build/80754af9/jupyter_client_1601311786391/work
+jupyter-core @ file:///C:/ci/jupyter_core_1612213356021/work
+kiwisolver==1.3.1
+librosa==0.8.0
+llvmlite==0.35.0
+matplotlib==3.3.4
+mkl-fft==1.2.0
+mkl-random==1.1.1
+mkl-service==2.3.0
+more-itertools @ file:///tmp/build/80754af9/more-itertools_1605111547926/work
+moviepy==1.0.3
+networkx==2.5
+numba==0.52.0
+numpy==1.19.5
+olefile==0.46
+opencv-python==4.5.1.48
+opencv-python-headless==4.5.1.48
+packaging @ file:///tmp/build/80754af9/packaging_1611952188834/work
+pandas @ file:///C:/ci/pandas_1611171485393/work
+parso @ file:///tmp/build/80754af9/parso_1607623074025/work
+pickleshare @ file:///tmp/build/80754af9/pickleshare_1606932040724/work
+Pillow @ file:///C:/ci/pillow_1609786840597/work
+pipreqs==0.4.10
+pluggy==0.13.1
+pooch==1.3.0
+proglog==0.1.9
+prompt-toolkit @ file:///tmp/build/80754af9/prompt-toolkit_1602688806899/work
+protobuf==3.14.0
+py @ file:///tmp/build/80754af9/py_1607971587848/work
+pycparser==2.20
+pyee==8.1.0
+Pygments @ file:///tmp/build/80754af9/pygments_1610565767015/work
+pyparsing @ file:///home/linux1/recipes/ci/pyparsing_1610983426697/work
+pytest==6.2.2
+python-dateutil @ file:///home/ktietz/src/ci/python-dateutil_1611928101742/work
+pytz @ file:///tmp/build/80754af9/pytz_1612215392582/work
+PyWavelets==1.1.1
+pywin32==227
+PyYAML==5.4.1
+pyzmq==20.0.0
+requests==2.25.1
+resampy==0.2.2
+scikit-image==0.18.1
+scikit-learn @ file:///C:/ci/scikit-learn_1598377018496/work
+scipy==1.6.0
+Shapely==1.7.1
+six @ file:///C:/ci/six_1605187374963/work
+SoundFile==0.10.3.post1
+tensorboardX==2.1
+threadpoolctl @ file:///tmp/tmp9twdgx9k/threadpoolctl-2.1.0-py3-none-any.whl
+tifffile==2021.1.14
+toml @ file:///tmp/build/80754af9/toml_1592853716807/work
+torch==1.7.1
+torchaudio==0.7.2
+torchvision==0.8.2
+tornado @ file:///C:/ci/tornado_1606942392901/work
+tqdm @ file:///tmp/build/80754af9/tqdm_1611857934208/work
+traitlets @ file:///home/ktietz/src/ci/traitlets_1611929699868/work
+typing-extensions @ file:///home/ktietz/src/ci_mi/typing_extensions_1612808209620/work
+urllib3==1.26.3
+wcwidth @ file:///tmp/build/80754af9/wcwidth_1593447189090/work
+wincertstore==0.2
+yarg==0.1.9

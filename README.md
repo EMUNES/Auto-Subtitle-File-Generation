@@ -21,7 +21,7 @@ Currently, you need to build the python environment to run and use this program 
 1. (Install python on your machine.)
 2. Download the project code on your machine.
 3. Download and Extract model under *models* folder. See README.md under *models* folder.
-4. (Open your terminal or cmd under the project root folder and type`python install -r requirements.txt`. Install pytorch following its official website if it fails to download torch.)
+4. (Open your terminal or cmd under the project root folder and type`python install -r requirements.txt`. Install pytorch following its official website if it fails to download torch.). If you see error while running the program, try to run `python install -r requirements_full.txt` (install a full bundle with specified version of packages) and the you should be fine with this project.
 5. Open your terminal or cmd under the project root folder and type `python run.py`. This will evoke an old-style script to accept the absolute path of your audio/video file, and offer a choice to name the output file.
 6. Get your subtitle file under *results* folder under the project root folder.
 
