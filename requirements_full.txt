@@ -1,5 +1,4 @@
 albumentations==0.5.2
-apex @ file:///D:/bld/nvidia-apex_1606156195516/work
 appdirs==1.4.4
 atomicwrites==1.4.0
 attrs @ file:///tmp/build/80754af9/attrs_1604765588209/work
