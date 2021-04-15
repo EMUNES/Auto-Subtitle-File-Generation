@@ -110,8 +110,31 @@ class Pannscnn14attInferer():
     
     def get_breakpoint(self):
         pass
+    
+
+class SttInferer():
+    def __init__(self) -> None:
+        pass
         
 def get_inference(targ_file_path, params_path, fname, post_process=True, output_folder="inf/output", short_clip=0, device=None, inferer=None):
+    """
+    Get the inference result for SED and STT tasks.
+    
+    Args:
+        targ_file_path: Target file path to get the inference result.
+        params_path: SED model path.
+        fname: File name fot the output.
+        post_process: Weather to use postprocess for SED task.
+        output_folder: Where to hold the output. Default works fine.
+        short_clip: Deprecated. Use vosk instead.
+        device: Device used for inference.
+        inferer: Declare other inference model for you task.
+        
+    Returns:
+        output_df: The output in pd.DataFrame format. The output_df will be written in *inf/output* folder.
+    """
+    
+    
     output = None
     
     if torch.cuda.is_available():
@@ -148,4 +171,4 @@ def get_inference(targ_file_path, params_path, fname, post_process=True, output_
         prediction_df.to_csv(out_src_file, index=False)
         print(f"Inference output file generated (This is not the final output), see: {output_folder}.\n")
     
-    return output
+    return output_df

@@ -29,3 +29,6 @@ src-*
 
 # show some examples
 !result-examples/The-Invisible-Man-2020.ass
+
+# scripts for testing module functionality and prepare for intergretion
+scripts

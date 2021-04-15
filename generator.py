@@ -27,3 +27,4 @@ def generator(targ, fname: str="current", sub_format: str="ass", post=True, outp
     print(f"Calling encoder to generate the final output...\n") 
     encoder.generate(fname)
     print(f"All procedures done! Subtitle file generated.\n")
+

@@ -1,3 +1,10 @@
+"""Process the inference result.
+
+The inference results should contain everything we need to generate subtitle files.
+But we still need some process to make the results suitable for subtitle encoder.
+"""
+
+
 import pandas as pd
 
 from config import PostProcessConfig as PPC
