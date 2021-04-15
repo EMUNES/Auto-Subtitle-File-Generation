@@ -4,7 +4,10 @@ Simple script to take input and run on CLI.
 
 from generator import generator
 
+
 if __name__ == '__main__':
+    
+        
     print("Welcome to ASFG! Contact author: hzb000113@qq.com\n\
 欢迎尝试！联系作者 - hzb000113@qq.com\n")
     

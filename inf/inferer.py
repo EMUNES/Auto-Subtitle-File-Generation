@@ -1,6 +1,8 @@
 import numpy as np
 import pandas as pd
 import torch
+import librosa
+import soundfile
 
 from utils import check_type, extract_audio, mono_load
 from config import InferenceConfig  as IC
@@ -9,6 +11,7 @@ from csrc.configurations import ModelConfig as MC
 from csrc.dataset import PANNsDataset
 from csrc.models import PANNsCNN14Att, AttBlock
 from inf.post import SpeechSeries
+from stt.vosk_api.python.eng import get_by_ffmpeg
 
 # Those configurations are from csrc configurations and should not be altered here.
 ### Those parameters are used for standard clip inference not for breakpoint timestamp.
@@ -113,7 +116,45 @@ class Pannscnn14attInferer():
     
 
 class SttInferer():
-    def __init__(self) -> None:
+    """Speech To Text inference using vosk api.
+    
+    This inferer will receive the DataFrame from SED inferer and calling
+    vosk api to run recognization for each detected clip.
+    """
+    
+    def __init__(self, sed_df: pd.DataFrame, targ) -> None:
+        self.df = sed_df
+        self.target_file_path = targ
+        
+    def _voice_split(self):
+        pass
+        
+    def _voice_recognize(self, onset: float, offset: float, lang="eng", callback=False):
+        """Recognize text in a clip
+        
+        Args:
+            onset: The begging of this clip (seconds).
+            offset: The ending point of this clip (seconds).
+            lang: The language spoken in this clip.
+            callback: Whether to use callback function to split the clip again.
+        
+        Return: 
+            event_text: The text of this clip.
+        """
+        event_onset = onset
+        event_duration = offset - onset
+        
+        # Cut the clip and write it in temp folder.
+        y, sr = librosa.load(self.target_file_path, sr=None, offset=event_onset, duration=event_duration)
+        soundfile.write(file="./temp/temp.wav", data=y, samplerate=sr, format="wav")
+
+        # Run recognization to the file in the temp folder.
+        event_text = get_by_ffmpeg.ffmpeg_sst("./temp/temp.wav")
+        
+        return event_text
+        # Cut the clip out
+        
+    def make_inference_result(self):
         pass
         
 def get_inference(targ_file_path, params_path, fname, post_process=True, output_folder="inf/output", short_clip=0, device=None, inferer=None):

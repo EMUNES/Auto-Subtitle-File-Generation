@@ -10,6 +10,13 @@ import subprocess
 SetLogLevel(0)
 
 def ffmpeg_sst(fname):
+    
+    # This file must be running under current folder to get model settings!
+    os.chdir(os.path.split(os.path.realpath(__file__))[0])
+    
+    if not os.path.exists("model"):
+        print ("Please download the model from https://alphacephei.com/vosk/models and unpack as 'model' in the current folder.")
+    
     sample_rate=16000
     model = Model("model")
     rec = KaldiRecognizer(model, sample_rate)
