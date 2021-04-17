@@ -5,6 +5,10 @@ Do ont include training configurations.
 
 import os
 
+
+### THOSE PACHAGES are not used but needed as backend.
+import ffmpeg
+
 # Use which model params to inference and get output in the program.
 INFERENCE_PARAMS_PATH = "./models/model_best.pth"
 

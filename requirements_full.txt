@@ -88,6 +88,7 @@ tqdm @ file:///tmp/build/80754af9/tqdm_1611857934208/work
 traitlets @ file:///home/ktietz/src/ci/traitlets_1611929699868/work
 typing-extensions @ file:///home/ktietz/src/ci_mi/typing_extensions_1612808209620/work
 urllib3==1.26.3
+vosk==0.3.22
 wcwidth @ file:///tmp/build/80754af9/wcwidth_1593447189090/work
 wincertstore==0.2
 yarg==0.1.9
