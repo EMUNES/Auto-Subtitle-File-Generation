@@ -3,8 +3,14 @@
 Do ont include training configurations.
 """
 
+import os
+
 # Use which model params to inference and get output in the program.
 INFERENCE_PARAMS_PATH = "./models/model_best.pth"
+
+# Abosulte path for this project root folder.
+ROOT_PATH_ABS = os.path.split(os.path.realpath(__file__))[0]
+TEMP_FOLDER_ABS = ROOT_PATH_ABS + '/temp'
 
 
 class PostProcessConfig(object):
@@ -132,6 +138,4 @@ class SSourceConfig(object):
         "Effect": "",
         "Text": "xxx",
     }
-    
-    content = "xxx"
     

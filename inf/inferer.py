@@ -1,3 +1,4 @@
+from os import SEEK_CUR
 import numpy as np
 import pandas as pd
 import torch
@@ -12,6 +13,7 @@ from csrc.dataset import PANNsDataset
 from csrc.models import PANNsCNN14Att, AttBlock
 from inf.post import SpeechSeries
 from stt.vosk_api.python.eng import get_by_ffmpeg
+from config import TEMP_FOLDER_ABS
 
 # Those configurations are from csrc configurations and should not be altered here.
 ### Those parameters are used for standard clip inference not for breakpoint timestamp.
@@ -122,9 +124,9 @@ class SttInferer():
     vosk api to run recognization for each detected clip.
     """
     
-    def __init__(self, sed_df: pd.DataFrame, targ) -> None:
+    def __init__(self, sed_df: pd.DataFrame, targ_path) -> None:
         self.df = sed_df
-        self.target_file_path = targ
+        self.target_file_path = targ_path
         
     def _voice_split(self):
         pass
@@ -138,24 +140,38 @@ class SttInferer():
             lang: The language spoken in this clip.
             callback: Whether to use callback function to split the clip again.
         
-        Return: 
+        Returns: 
             event_text: The text of this clip.
         """
         event_onset = onset
         event_duration = offset - onset
         
+        print(f"Running voice recogniztion on {event_onset} to {offset}...")    
+        
         # Cut the clip and write it in temp folder.
         y, sr = librosa.load(self.target_file_path, sr=None, offset=event_onset, duration=event_duration)
-        soundfile.write(file="./temp/temp.wav", data=y, samplerate=sr, format="wav")
+        soundfile.write(file=TEMP_FOLDER_ABS+"/"+"stt_temp.wav", data=y, samplerate=sr, format="wav")
 
         # Run recognization to the file in the temp folder.
-        event_text = get_by_ffmpeg.ffmpeg_sst("./temp/temp.wav")
+        event_text = get_by_ffmpeg.ffmpeg_sst("stt_temp.wav")
         
         return event_text
         # Cut the clip out
         
     def make_inference_result(self):
-        pass
+        """Take SED df and generate text for each row
+        """
+        text_all = []
+        
+        for (onset, offset) in zip(self.df.start, self.df.end):
+            current_text = self._voice_recognize(onset=onset, offset=offset)
+            text_all.append(current_text)
+            
+        df_with_text = self.df.copy()
+        df_with_text.recognized_text = text_all
+
+        return df_with_text
+            
         
 def get_inference(targ_file_path, params_path, fname, post_process=True, output_folder="inf/output", short_clip=0, device=None, inferer=None):
     """
@@ -204,12 +220,19 @@ def get_inference(targ_file_path, params_path, fname, post_process=True, output_
         prediction_df = pd.DataFrame(output)
         output_df = prediction_df[prediction_df.speech_recognition=="speech"]
 
+        # Whether to use post process for SED task. This is recommanded.
         if post_process:
             output_df = SpeechSeries(output_df).series
+            prediction_df = SpeechSeries(prediction_df).series
             print("Post process applied.\n")
-            
+        
+        # Running Speech TO Text based on SED result.
+        output_df = SttInferer(output_df, targ_path=targ_file_path).make_inference_result()
+        
+        # Write to local as logs.
         output_df.to_csv(out_file, index=False)
         prediction_df.to_csv(out_src_file, index=False)
+        
         print(f"Inference output file generated (This is not the final output), see: {output_folder}.\n")
     
     return output_df

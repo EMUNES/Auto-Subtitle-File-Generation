@@ -7,6 +7,8 @@ import os
 import wave
 import subprocess
 
+from config import TEMP_FOLDER_ABS
+
 SetLogLevel(0)
 
 def ffmpeg_sst(fname):
@@ -14,6 +16,9 @@ def ffmpeg_sst(fname):
     # This file must be running under current folder to get model settings!
     os.chdir(os.path.split(os.path.realpath(__file__))[0])
     
+    # Opne with absolute path to avoid system error.
+    fpath = TEMP_FOLDER_ABS + '/' + fname
+        
     if not os.path.exists("model"):
         print ("Please download the model from https://alphacephei.com/vosk/models and unpack as 'model' in the current folder.")
     
@@ -22,7 +27,7 @@ def ffmpeg_sst(fname):
     rec = KaldiRecognizer(model, sample_rate)
 
     process = subprocess.Popen(['ffmpeg', '-loglevel', 'quiet', '-i',
-                                fname,
+                                fpath,
                                 '-ar', str(sample_rate) , '-ac', '1', '-f', 's16le', '-'],
                                 stdout=subprocess.PIPE)
 

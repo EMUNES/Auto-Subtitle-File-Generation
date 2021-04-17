@@ -1,5 +1,9 @@
-"""
-Simple script to take input and run on CLI.
+"""Take user input and run the program.
+
+This should be the Only entry for the program. This project
+uses absolute import system, so moving this script to other place
+will cause System Error. Just go in the project root folder and run
+this script
 """
 
 from generator import generator
@@ -12,15 +16,15 @@ if __name__ == '__main__':
 欢迎尝试！联系作者 - hzb000113@qq.com\n")
     
     target_file_name = input("The absolute path for your audio/video:\n\
-音视频文件的绝对路径:\n\n")
+音视频文件的绝对路径:\n")
     
-    output_file_name = input("Declare the file name and file type for output(default 'current.ass').\n\
+    output_file_name = input("\nDeclare the file name and file type for output(default 'current.ass').\n\
 Valid input such as: 'sample.ass', 'sample', 'sample.srt'. No quote mark needed:\n\
 你希望的输出文件名称和格式（默认是current.ass）。\n\
-合法的文件名如：'sample.ass', 'sample', 'sample.srt'，不需要引号:\n\n")
+合法的文件名如：'sample.ass', 'sample', 'sample.srt'，不需要引号:\n")
     
-    post_process = input("Use postprocess (Default yes is recommanded?) 使用后处理算法吗？（推荐默认yes）\ny/n \n\n")
-    if post_process.lower().startswith("n"):
+    post_process = input("\nUse postprocess (Default yes is recommanded?) 使用后处理算法吗？（推荐默认yes）\n(y/n)\n")
+    if post_process and post_process.lower().startswith("n"):
         post_process = False
     
     print("\nPress 'Enter' if the cli gets stuck for a long time during the procedure.")

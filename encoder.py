@@ -17,6 +17,7 @@ class Encoder(object):
     Attributes:
         start_series(List(float)): Start timestamps for events.  
         end_series(List(float)): End timestamps for events.
+        texts: Pandas series containing all dialogue texts.        
     """
     
     def __init__(self, df:pd.DataFrame) -> None:
@@ -24,6 +25,7 @@ class Encoder(object):
         self.df = df
         self.start_series = [f"{self._format_time(float(fl))}" for fl in self.df.start]
         self.end_series = [f"{self._format_time(float(fl))}" for fl in self.df.end]
+        self.texts = self.df.recognized_text
 
     def _format_time(self, fl):
         """
@@ -166,9 +168,10 @@ class ASSEncoder(Encoder):
             info["Style"] = self.lang_style
             
         if "Start" in info and "End" in info:
-            for (s, e) in zip(self.start_series, self.end_series):
+            for (s, e, t) in zip(self.start_series, self.end_series, self.texts):
                 info["Start"] = self._format_time_presentation(s)
                 info["End"] = self._format_time_presentation(e)
+                info["Text"] = t 
                 
                 yield self._dict2str({
                     "Format": info.keys(),
@@ -176,7 +179,12 @@ class ASSEncoder(Encoder):
                 })
                 
     def generate(self, file_name, target_dir="./results/", encoding="utf-8"):
+        """Generate subtitle file using the encoded proproties.
         
+        Handle the propeties and write them in standard subtitle file format.
+        Here is the place where you turn content to files and you should
+        do the job about format and encoding only here.
+        """
         v4_styles = []
         try:
             v4_styles = self.v4_styles
@@ -231,16 +239,17 @@ class ASSEncoder(Encoder):
             
 
 class SRTEncoder(Encoder):
-    """
-    Decode .srt subtitle files.
+    """Encode .srt subtitle files from pandas DataFrame.
+    
+    Properies:
+        event_timestamps: Indicate the timeline.
     """
     
     def __init__(self, df: pd.DataFrame) -> None:
         super().__init__(df)
         
     def _format_time_presentation(self, str_time):
-        """
-        Perfect the format of float numbers to fit SRT format.
+        """Perfect the format of float numbers to fit SRT format.
         
         Args: 
             str_time(str): Represent time as x:x:x.xx
@@ -265,7 +274,7 @@ class SRTEncoder(Encoder):
         return formatted_str_time
 
     @property
-    def events(self) -> list:
+    def event_timestamps(self) -> list:
         event_collections = []
         
         for (s, e) in zip(self.start_series, self.end_series):
@@ -289,12 +298,12 @@ class SRTEncoder(Encoder):
             path = path + ".srt"
             
         with open(path, mode="w", encoding=encoding) as f:
-            for (idx, event) in enumerate(self.events):
+            for (idx, (timeline, text)) in enumerate(zip(self.event_timestamps, self.texts)):
                 f.write(str(idx+1))
                 f.write("\n")
-                f.write(event)
+                f.write(timeline)
                 f.write("\n")
-                f.write(SSC.content)
+                f.write(text)
                 f.write("\n")
 
                 f.write("\n")

@@ -1,4 +1,4 @@
-"""Process the inference result.
+"""Process the SED inference result.
 
 The inference results should contain everything we need to generate subtitle files.
 But we still need some process to make the results suitable for subtitle encoder.
@@ -11,7 +11,7 @@ from config import PostProcessConfig as PPC
 
 
 class SpeechNode(object):
-    def __init__(self, cat:str="speech", onset:float=0, offset:float=0, mac:float=0, mec:float=0) -> None:
+    def __init__(self, cat:str="speech", onset:float=0, offset:float=0, mac:float=0, mec:float=0,) -> None:
         self.cat = cat
         self.onset = onset
         self.offset = offset
@@ -41,7 +41,7 @@ class SpeechSeries(object):
                 s.start + PPC.global_bias, # global shift
                 s.end + PPC.global_bias, # global shift
                 s.max_confidence,
-                s.mean_confidence
+                s.mean_confidence,
             )
 
             if self._head_node == None:
@@ -60,7 +60,6 @@ class SpeechSeries(object):
         n1.next = n2.next 
         return n1
 
-    # TODO: Used with hooks.
     def _break_node(self, n, timestamp: float):
         new_offset = timestamp - PPC.break_period/2
         new_onset = timestamp + PPC.break_period/2
@@ -112,6 +111,8 @@ class SpeechSeries(object):
 
     @property
     def series(self) -> pd.DataFrame:
+        """Series of the sp
+        """
         speech = self._head_node
         assert speech != None, "Nothing valid from inference output. Please check /inf/output/yourOutputFile."
         
