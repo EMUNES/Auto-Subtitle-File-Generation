@@ -1,4 +1,3 @@
-from os import SEEK_CUR
 import numpy as np
 import pandas as pd
 import torch
@@ -12,7 +11,7 @@ from csrc.configurations import ModelConfig as MC
 from csrc.dataset import PANNsDataset
 from csrc.models import PANNsCNN14Att, AttBlock
 from inf.post import SpeechSeries
-from stt.vosk_api.python.eng import get_by_ffmpeg
+from stt.vosk_api import get_by_ffmpeg
 from config import TEMP_FOLDER_ABS
 
 # Those configurations are from csrc configurations and should not be altered here.
