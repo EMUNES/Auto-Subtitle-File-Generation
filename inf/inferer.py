@@ -167,8 +167,8 @@ class SttInferer():
             current_text = self._voice_recognize(onset=onset, offset=offset)
             text_all.append(current_text)
             
-        df_with_text = self.df.copy()
-        df_with_text.recognized_text = text_all
+        df_with_text = self.df.copy(deep=True)
+        df_with_text["recognized_text"] = text_all
 
         return df_with_text
             

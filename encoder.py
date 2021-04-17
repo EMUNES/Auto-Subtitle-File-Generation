@@ -4,7 +4,8 @@ Parses the .csv file from inference output and generate subtitle file.
 
 import pandas as pd
 
-from config import SSourceConfig as SSC
+from config import ROOT_PATH_ABS, SSourceConfig as SSC
+from config import RESULT_FOLDER_ABS
 
 
 class Encoder(object):
@@ -178,7 +179,7 @@ class ASSEncoder(Encoder):
                     "Dialogue": info.values(),
                 })
                 
-    def generate(self, file_name, target_dir="./results/", encoding="utf-8"):
+    def generate(self, file_name, target_dir=RESULT_FOLDER_ABS, encoding="utf-8"):
         """Generate subtitle file using the encoded proproties.
         
         Handle the propeties and write them in standard subtitle file format.
@@ -199,7 +200,7 @@ class ASSEncoder(Encoder):
         
         assert v4plus_styles or v4_styles, "No styles input for .ass files."
         
-        path = target_dir + file_name 
+        path = f"{target_dir}/{file_name}" 
         if (not ".ssa" in file_name) or (not ".ass" in file_name):
             path = path + (".ass" if v4plus_styles else ".ssa")
         
@@ -283,7 +284,7 @@ class SRTEncoder(Encoder):
         
         return event_collections
         
-    def generate(self, file_name, target_dir="./results/", encoding="utf-8"):
+    def generate(self, file_name, target_dir=ROOT_PATH_ABS, encoding="utf-8"):
         """
         API offering subtitle generation survice.
         
@@ -293,7 +294,7 @@ class SRTEncoder(Encoder):
             encoding(str): The encoding for the subtitle file.
         """
         
-        path = target_dir + file_name            
+        path = f"{target_dir}/{file_name}"       
         if not "srt" in file_name:
             path = path + ".srt"
             

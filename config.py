@@ -10,12 +10,15 @@ import os
 import ffmpeg
 
 # Use which model params to inference and get output in the program.
-INFERENCE_PARAMS_PATH = "./models/model_best.pth"
 
 # Abosulte path for this project root folder.
+# Using relative path system causing many troubles.
 ROOT_PATH_ABS = os.path.split(os.path.realpath(__file__))[0]
-TEMP_FOLDER_ABS = ROOT_PATH_ABS + '/temp'
+INF_OUTPUT_FOLDER_ABS = ROOT_PATH_ABS + "/inf/output"
+RESULT_FOLDER_ABS = ROOT_PATH_ABS + "/results"
+TEMP_FOLDER_ABS = ROOT_PATH_ABS + "/temp"
 
+INFERENCE_PARAMS_PATH = ROOT_PATH_ABS + "/models/model_best.pth"
 
 class PostProcessConfig(object):
     """

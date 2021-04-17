@@ -9,6 +9,8 @@ import numpy as np
 import torch
 import os
 
+from config import ROOT_PATH_ABS
+
 def seed_all(s:int=42) -> None: 
     random.seed(s)
     np.random.seed(s)
@@ -29,7 +31,7 @@ class TrainingDirs(object):
     
     def __init__(self, dsname: str, pre_test: bool) -> None:
         super().__init__()
-        ROOT = Path("./")
+        ROOT = Path(ROOT_PATH_ABS)
         INPUT_ROOT = ROOT / 'data'
         TARGET_AUDIO_DIR = INPUT_ROOT / dsname
         print(f"Working with dataset under {TARGET_AUDIO_DIR}.")

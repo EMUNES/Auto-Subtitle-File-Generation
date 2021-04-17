@@ -6,12 +6,13 @@ import sys
 import os
 import wave
 import subprocess
+import json
 
 from config import TEMP_FOLDER_ABS
 
-SetLogLevel(0)
-
 def ffmpeg_sst(fname):
+    
+    SetLogLevel(-1)
     
     # This file must be running under current folder to get model settings!
     os.chdir(os.path.split(os.path.realpath(__file__))[0])
@@ -36,9 +37,13 @@ def ffmpeg_sst(fname):
         if len(data) == 0:
             break
         if rec.AcceptWaveform(data):
-            print(rec.Result())
-        else:
-            print(rec.PartialResult())
+            res = json.loads(rec.Result())
+        # else:
+        #     print(rec.PartialResult())
 
-    print(rec.FinalResult())
-    return rec.FinalResult
+    # print(rec.FinalResult())
+    # return rec.FinalResult
+    res = json.loads(rec.FinalResult())
+    print (f"All text: {res['text']}\n")
+    
+    return res['text']
