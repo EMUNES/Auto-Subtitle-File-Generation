@@ -10,7 +10,7 @@ import json
 
 from config import TEMP_FOLDER_ABS
 
-def ffmpeg_sst(fname):
+def ffmpeg_sst(fname:str, lang:str="eng", model_spec:str="model"):
     
     SetLogLevel(-1)
     
@@ -20,11 +20,12 @@ def ffmpeg_sst(fname):
     # Opne with absolute path to avoid system error.
     fpath = TEMP_FOLDER_ABS + '/' + fname
         
-    if not os.path.exists("model"):
+    if not os.path.exists("model-eng"):
         print ("Please download the model from https://alphacephei.com/vosk/models and unpack as 'model' in the current folder.")
     
     sample_rate=16000
-    model = Model("model")
+    # Choose the model based on given language or specified model name.
+    model = Model(f"model-{lang}") if model_spec=="model" else Model(model_spec)
     rec = KaldiRecognizer(model, sample_rate)
 
     process = subprocess.Popen(['ffmpeg', '-loglevel', 'quiet', '-i',

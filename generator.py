@@ -8,10 +8,11 @@ from inf.inferer import get_inference
 from encoder import ASSEncoder, SRTEncoder
 from config import INFERENCE_PARAMS_PATH, INF_OUTPUT_FOLDER_ABS
 
-def generator(targ, fname: str="current", sub_format: str="ass", post=True, output_folder=INF_OUTPUT_FOLDER_ABS):
+def generator(targ, fname: str="current", sub_format: str="ass", lang: str="eng", post=True, output_folder=INF_OUTPUT_FOLDER_ABS):
     get_inference(targ_file_path=targ,
                   params_path=INFERENCE_PARAMS_PATH,
                   fname=fname,
+                  lang=lang,
                   post_process=post,
                   output_folder=output_folder)
 

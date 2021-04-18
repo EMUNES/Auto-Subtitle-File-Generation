@@ -61,6 +61,29 @@ class InferenceConfig(object):
         0: "non-speech",
         1: "speech",
     }
+    
+    
+class STTInferenceConfig(object):
+    """Configurations for Speech To Text task.
+    
+    properties:
+        language_choices: Available languages supported in STT.
+    """
+    
+    language_choices = {
+        "eng": "English",
+        "chs": "Chinese",
+    }
+    
+    def __init__(self) -> None:
+        super().__init__()
+    
+    def iter_avl_langs(self, verbose=False):
+        for lang in self.language_choices.keys():
+            if verbose:
+                print(f"{lang} - {self.language_choices[k]}")
+            language_name = self.language_choices[lang]
+            yield lang, language_name
 
 
 class SSourceConfig(object):

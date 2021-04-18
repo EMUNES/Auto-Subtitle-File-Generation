@@ -32,3 +32,6 @@ src-*
 
 # scripts for testing module functionality and prepare for intergretion
 scripts
+
+# models for Speech to Text
+model-*

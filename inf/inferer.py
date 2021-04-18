@@ -1,4 +1,5 @@
 import numpy as np
+from numpy.lib.utils import source
 import pandas as pd
 import torch
 import librosa
@@ -123,14 +124,15 @@ class SttInferer():
     vosk api to run recognization for each detected clip.
     """
     
-    def __init__(self, sed_df: pd.DataFrame, targ_path) -> None:
+    def __init__(self, sed_df: pd.DataFrame, targ_path, source_lang="eng") -> None:
         self.df = sed_df
         self.target_file_path = targ_path
+        self.lang = source_lang
         
     def _voice_split(self):
         pass
         
-    def _voice_recognize(self, onset: float, offset: float, lang="eng", callback=False):
+    def _voice_recognize(self, onset: float, offset: float, callback=False):
         """Recognize text in a clip
         
         Args:
@@ -152,7 +154,7 @@ class SttInferer():
         soundfile.write(file=TEMP_FOLDER_ABS+"/"+"stt_temp.wav", data=y, samplerate=sr, format="wav")
 
         # Run recognization to the file in the temp folder.
-        event_text = get_by_ffmpeg.ffmpeg_sst("stt_temp.wav")
+        event_text = get_by_ffmpeg.ffmpeg_sst("stt_temp.wav", lang=self.lang)
         
         return event_text
         # Cut the clip out
@@ -172,7 +174,7 @@ class SttInferer():
         return df_with_text
             
         
-def get_inference(targ_file_path, params_path, fname, post_process=True, output_folder="inf/output", short_clip=0, device=None, inferer=None):
+def get_inference(targ_file_path, params_path, fname, lang, post_process=True, output_folder="inf/output", short_clip=0, device=None, inferer=None):
     """
     Get the inference result for SED and STT tasks.
     
@@ -226,7 +228,7 @@ def get_inference(targ_file_path, params_path, fname, post_process=True, output_
             print("Post process applied.\n")
         
         # Running Speech TO Text based on SED result.
-        output_df = SttInferer(output_df, targ_path=targ_file_path).make_inference_result()
+        output_df = SttInferer(output_df, targ_path=targ_file_path, source_lang=lang).make_inference_result()
         
         # Write to local as logs.
         output_df.to_csv(out_file, index=False)
