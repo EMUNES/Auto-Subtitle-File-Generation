@@ -23,3 +23,7 @@ big clusters.
 
 For installation instructions, examples and documentation visit [Vosk
 Website](https://alphacephei.com/vosk).
+
+## Thanks from ASFG
+
+VOSK api makes offline and free SpeechToText transition handy. It's easy to integrate vosk-api to my project. For this reason 
