@@ -30,7 +30,7 @@ Valid input such as: 'sample.ass', 'sample', 'sample.srt'. No quote mark needed:
     for (i, (lang, lang_name)) in enumerate(STTInferenceConfig().iter_avl_langs()):
         print(f"{i} - {lang_name}")
         choices[str(i)] = lang
-    language_idx = input("Choose the lanauage index of your source:\n选择资源语言的对应序号:")
+    language_idx = input("Choose the lanauage index of your source:\n选择资源语言的对应序号:\n")
     source_language = choices[language_idx]
     
     

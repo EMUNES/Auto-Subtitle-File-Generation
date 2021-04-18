@@ -14,6 +14,10 @@ how it seems :point_down:
 
 There is still much to improve in real time cases. See *TODO.md* in the project folder for details.
 
+## UPDATE
+
+- **Speech to text** transition based on vosk api is implemented and now you can get subtitle files with recognized texts in it. However, the offline model does not perform very well. For more knowledge about offline STT model, check [vosk models](https://alphacephei.com/vosk/models) for details and *stt/vosk_api/README.md* local file for how to integrate offline model to this project. --- 2021.4
+
 ## A handy guide first
 
 Currently, you need to build the python environment to run and use this program :sweat:
@@ -44,5 +48,7 @@ Check [ASFG-train](https://github.com/EMUNES/ASFG-train) for details.
 Great thanks to kaggle user [Hidehise Arai](https://www.kaggle.com/hidehisaarai1213) from whom I learn to build my baseline for SED, which I use heavenly for deep learning in this project too.
 
 The pretrained model I use for this project is from: [PANNs: Large-Scale Pretrained Audio Neural Networks for Audio Pattern Recognition](https://arxiv.org/abs/1912.10211).
+
+The STT (speech to task) task is implemented using [vosk-api](https://github.com/alphacep/vosk-api).
 
 All credits to them :thumbsup:

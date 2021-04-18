@@ -29,3 +29,12 @@ Website](https://alphacephei.com/vosk).
 VOSK api makes offline and free SpeechToText transition handy. It's easy to integrate vosk-api to my project. Great work!
 
 ALSO, all models I use here are a renamed version from vosk-api models. For more details, see [vosk models](https://alphacephei.com/vosk/models). Thanks again!
+
+## How to use vosk models in ASFG
+
+It's the same as how to use models in [vosk-api](https://alphacephei.com/vosk/). One thing you need to pay attention to is rename the model folder as *model-xxx*, *xxx* is the supported lanaguge abbreviation.
+
+Currently supported languages are:
+
+- chs: Chinese.
+- eng: English.
