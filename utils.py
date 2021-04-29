@@ -20,7 +20,7 @@ import os
 import librosa
 import moviepy.editor as mp
 
-def mono_load(path, sr=32000, mono=True):
+def mono_load(path, sr=16000, mono=True):
     """
     A custonmized librosa loading process emphasizing mono channel.
     

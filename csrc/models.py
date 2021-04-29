@@ -144,7 +144,7 @@ class Spectrogram(nn.Module):
 
     
 class LogmelFilterBank(nn.Module):
-    def __init__(self, sr=32000, n_fft=2048, n_mels=64, fmin=50, fmax=14000, is_log=True, 
+    def __init__(self, sr=16000, n_fft=2048, n_mels=64, fmin=50, fmax=14000, is_log=True, 
         ref=1.0, amin=1e-10, top_db=80.0, freeze_parameters=True):
         """Calculate logmel spectrogram using pytorch. The mel filter bank is 
         the pytorch implementation of as librosa.filters.mel 
