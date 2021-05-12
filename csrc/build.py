@@ -55,27 +55,31 @@ def generate_from_audio(audio_path, sub_path, dest_path, sub_decoder, verbose=Fa
     video_name = audio_path.stem if isinstance(audio_path, Path) else Path(audio_path).stem
     
     # Get formatted sub events for further engineering.
-    print("Extracting timestamps from the subtitle file...\n")
+    print("Extracting timestamps from the subtitle file...")
     decoder = sub_decoder(sub_path, encoding=DatasetConfig.sub_encoding)
     onsets, offsets = decoder.time_series
-    vb('Onset timestamps generated:', onsets, verbose)
-    vb('Offset timestamps generated:', offsets, verbose)
-    print("Extraction complete!\n\n")
+    if verbose:
+        vb('Onset timestamps generated:', onsets, verbose)
+        vb('Offset timestamps generated:', offsets, verbose)
+        
+    print("Extraction complete!\n")
 
     # Load audio using librosa and resample the audio in this step.
-    print("Librosa loading audio...\n")
+    print("Librosa loading audio...")
     y, sr = mono_load(audio_path)
-    print(f"Loading source file success! Using sampling rate {DatasetConfig.dataset_sample_rate}.\n\n")
+    print(f"Loading source file success! Using sampling rate {DatasetConfig.dataset_sample_rate}.\n")
     
     # Get the clip sample lengths.
     clip_sample_length = sr * DatasetConfig.dataset_clip_time
     
     # Main loop.
-    # Divide a whole audio into 5-secs clips.
+    # Divide a whole audio into clips.
     clip_flag = 0 # current working clip in current sound position (not senconds)
     idx = 0 # current working clip number 
     exceeded = False # whether the clip has exceeded the audio file
     sound = y
+    tag_1 = 0
+    tag_0 = 0
 
     print("Start building process.\nTransforming dataset...\n")
     while True:
@@ -92,11 +96,17 @@ def generate_from_audio(audio_path, sub_path, dest_path, sub_decoder, verbose=Fa
          
         # Get the clip name with corresponding labels with timeline of this clip and sub_events.
         clip_tag = _tagging(clip_flag/sr, onsets, offsets)
+        if clip_tag == 0:
+            tag_0 += 1
+        if clip_tag == 1:
+            tag_1 += 1
+            
         clip_name = video_name + '-' + str(clip_tag)
         _resample(clip, clip_name, DatasetConfig.dataset_audio_format, idx, dest_path, verbose)
         
         # If exceeded, break the loop.
         if exceeded: break
     
-    print("Building process finished.\n\n")
+    print(f"Building process finished for {video_name}.")
+    print(f"Label 1 (speech) clips: {tag_1}\nLabel 0 (non-speech) clips: {tag_0} \n")
     

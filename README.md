@@ -22,7 +22,7 @@ There is still much to improve in real time cases. See *TODO.md* in the project 
 
 Currently, you need to build the python environment to run and use this program :sweat:
 
-1. (Install python on your machine.)
+1. (Install python on your machine. Python version >= 3.8.)
 2. Download the project code on your machine.
 3. Download and Extract model under *models* folder. See README.md under *models* folder.
 4. (Open your terminal or cmd under the project root folder and type`python install -r requirements.txt`. Install pytorch following its official website if it fails to download torch.). If you see error while running the program, try to run `python install -r requirements_full.txt` (install a full bundle with specified version of packages) and the you should be fine with this project.

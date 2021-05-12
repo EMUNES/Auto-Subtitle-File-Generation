@@ -1,11 +1,60 @@
-"""
-Decode subtitle files for materials bulding the dataset.
+"""Decode subtitle files for materials bulding the dataset.
 """
 
 from pathlib import Path
+from config import DecoderConfig as DC
 
 
-class ASSDecoder(object):
+class Decoder(object):
+    """Decoder containing public arguments and methods for subtitle files.
+    """
+    
+    def __init__(self, file_path, encoding, trim) -> None:
+        super().__init__()
+        self.file_path = file_path
+        self.encoding = encoding
+        self.trim = trim
+        
+    def _trim_events(self, onsets, offsets):
+        """Trim the events.
+
+        Sometimes the subtitle will continue after cutting out a clip (2s) but that time 
+        is very short (like 0.1s) that nobody (let alone machines) can recognize human 
+        speech in it. To avoid such bias causing a lot of mislabeled, unrecognizable clips
+        in the dataset. we should trim the event onsets and offsets to keep the obvious, 
+        recognizable speech clips only.
+        
+        Args:
+            onsets: [events onsets].
+            offsets: [events offsets].
+            
+        Returns: 
+            onsets: [trimmed events onsets].
+            offsets: [trimmed events offsets].
+        """
+        
+        def handle_offset(offset):
+            if (offset % 2.) < DC.trimming_end:
+                offset = float(int(offset))
+            
+            return offset
+                
+        def handle_onset(onset):
+            if on_end := ((onset / 2. + 1) * 2 - onset) < DC.trimming_start:
+                onset = float(on_end)
+            
+            return onset
+            
+        # Trim offsets.
+        offsets = list(map(handle_offset, offsets))
+        
+        # Trim onsets.
+        onsets = list(map(handle_onset, onsets))
+        
+        return onsets, offsets
+
+
+class ASSDecoder(Decoder):
     """
     Decode .ass(.ssa) subtitle files
     
@@ -17,15 +66,14 @@ class ASSDecoder(object):
         file_type: Subtitle file format.
         
     Properties:
-
+        time_series: Containing all events timestamps (s).
     """
     
     file_type = "ass"
 
-    def __init__(self, file_path, encoding="utf-8"):
+    def __init__(self, file_path, encoding="utf-8", trim=True):
         assert isinstance(file_path, str) or isinstance(file_path, Path), "Invalid file path, only 'str' and Pathlib.Path' supported."
-        self.file_path = file_path
-        self.encoding = encoding
+        super().__init__(file_path, encoding, trim)
         self.flag = 0
         self.tags =  self._tags()
         assert len(self.tags["events"])==1, "There should only be one [Events] tag in sub file."
@@ -123,15 +171,15 @@ class ASSDecoder(object):
             on_ts.append(self._decode_time(onset))
             off_ts.append(self._decode_time(offset))
             
-        assert len(on_ts) >= 1, "No valid time"
+        on_ts, off_ts = self._trim_events(on_ts, off_ts) if self.trim else (on_ts, off_ts)
+            
         assert len(on_ts) == len(off_ts), "Unable to match onset with offset for Dialogues, please check your sub file"
         
         return on_ts, off_ts
              
             
-class SRTDecoder(object):
-    """
-    Decode .srt format subtitle files.
+class SRTDecoder(Decoder):
+    """Decode .srt format subtitle files.
     
     Args:
         file_path(str/path): The subtitle file path for decoding.
@@ -146,10 +194,10 @@ class SRTDecoder(object):
     
     file_type = "srt"
     
-    def __init__(self, file_path, encoding="utf-8") -> None:
-        self.file_path = file_path
-        self.encoding = encoding
-        
+    def __init__(self, file_path, encoding="utf-8", trim=True) -> None:
+        assert isinstance(file_path, str) or isinstance(file_path, Path), "Invalid file path, only 'str' and Pathlib.Path' supported."
+        super().__init__(file_path, encoding, trim)
+
     def _decode_time(self, str_time):
         """Decode time from src to float(.2f), which stands for seconds.
         
@@ -172,6 +220,8 @@ class SRTDecoder(object):
         
     @property
     def time_series(self):
+        """Return event timestamps.
+        """
         on_ts = []
         off_ts = []
         
@@ -186,6 +236,8 @@ class SRTDecoder(object):
                         on_ts.append(onset)
                     if offset: 
                         off_ts.append(offset)
+                        
+        on_ts, off_ts = self._trim_events(on_ts, off_ts) if self.trim else (on_ts, off_ts)
         
         assert len(on_ts)==len(off_ts), "Mismatch for timestamp series."
 

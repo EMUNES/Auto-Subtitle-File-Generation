@@ -20,6 +20,19 @@ TEMP_FOLDER_ABS = ROOT_PATH_ABS + "/temp"
 
 INFERENCE_PARAMS_PATH = ROOT_PATH_ABS + "/models/model_best.pth"
 
+
+class DecoderConfig(object):
+    """Configrations for decoder.
+    
+    Those trimming bias should be set between 0.2 ~ 0.3.
+    Too large you will lose words. 
+    To Small there will be more false speech label.
+    """
+    
+    trimming_end = 0.33
+    trimming_start = 0.25
+
+
 class PostProcessConfig(object):
     """
     Basic params for postprocess.
