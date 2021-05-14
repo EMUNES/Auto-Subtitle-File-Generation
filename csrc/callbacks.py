@@ -3,13 +3,18 @@
 
 """
 Callback functions for catalyst.
+
+For catalyst 21 we need to set:
+1. loader_metrics: runner.loader_metrics[self.metric_key]
+2. epoch_metricsJ: runner.epoch_metrics[self.loader_key][self.metric_key]
 """
 
+from os import stat
 import numpy as np
 
 from typing import List
 
-from catalyst.core import Callback, CallbackOrder, State
+from catalyst.core import Callback, CallbackOrder, IRunner
 from sklearn.metrics import f1_score, average_precision_score, precision_score
 
 
@@ -26,13 +31,13 @@ class F1Callback(Callback):
         self.model_output_key = model_output_key
         self.prefix = prefix
 
-    def on_loader_start(self, state: State):
+    def on_loader_start(self, state: IRunner):
         self.prediction: List[np.ndarray] = []
         self.target: List[np.ndarray] = []
 
-    def on_batch_end(self, state: State):
-        targ = state.input[self.input_key].detach().cpu().numpy()
-        out = state.output[self.output_key]
+    def on_batch_end(self, state: IRunner):
+        targ = state.batch[self.input_key].detach().cpu().numpy()
+        out = state.batch[self.output_key]
 
         clipwise_output = out[self.model_output_key].detach().cpu().numpy()
 
@@ -45,17 +50,22 @@ class F1Callback(Callback):
         score = f1_score(y_true, y_pred, average="macro")
         state.batch_metrics[self.prefix] = score
 
-    def on_loader_end(self, state: State):
+    def on_loader_end(self, state: IRunner):
         y_pred = np.concatenate(self.prediction, axis=0).argmax(axis=1)
         y_true = np.concatenate(self.target, axis=0).argmax(axis=1)
         score = f1_score(y_true, y_pred, average="macro")
         state.loader_metrics[self.prefix] = score
         if state.is_valid_loader:
-            state.epoch_metrics[state.valid_loader + "_epoch_" +
-                                self.prefix] = score
+            state.epoch_metrics["valid"] = {
+                self.prefix: score
+            }
+            # state.epoch_metrics[state.loader_key + "_epoch_" +
+            #                     self.prefix] = score
         else:
-            state.epoch_metrics["train_epoch_" + self.prefix] = score
-            
+            # state.epoch_metrics["train_epoch_" + self.prefix] = score
+            state.epoch_metrics["train"] = {
+                self.prefix: score
+            }            
             
 class PrecisionCallback(Callback):
     def __init__(self,
@@ -70,13 +80,13 @@ class PrecisionCallback(Callback):
         self.model_output_key = model_output_key
         self.prefix = prefix
 
-    def on_loader_start(self, state: State):
+    def on_loader_start(self, state: IRunner):
         self.prediction: List[np.ndarray] = []
         self.target: List[np.ndarray] = []
 
-    def on_batch_end(self, state: State):
-        targ = state.input[self.input_key].detach().cpu().numpy()
-        out = state.output[self.output_key]
+    def on_batch_end(self, state: IRunner):
+        targ = state.batch[self.input_key].detach().cpu().numpy()
+        out = state.batch[self.output_key]
 
         clipwise_output = out[self.model_output_key].detach().cpu().numpy()
 
@@ -89,15 +99,22 @@ class PrecisionCallback(Callback):
         score = precision_score(y_true, y_pred)
         state.batch_metrics[self.prefix] = score
 
-    def on_loader_end(self, state: State):
+    def on_loader_end(self, state: IRunner):
         y_pred = np.concatenate(self.prediction, axis=0).argmax(axis=1)
         y_true = np.concatenate(self.target, axis=0).argmax(axis=1)
         score = precision_score(y_true, y_pred)
         state.loader_metrics[self.prefix] = score
         if state.is_valid_loader:
-            state.epoch_metrics[state.valid_loader + "_epoch_" + self.prefix] = score
+            state.epoch_metrics["valid"] = {
+                self.prefix: score
+            }
+            # state.epoch_metrics[state.loader_key + "_epoch_" +
+            #                     self.prefix] = score
         else:
-            state.epoch_metrics["train_epoch_" + self.prefix] = score    
+            # state.epoch_metrics["train_epoch_" + self.prefix] = score
+            state.epoch_metrics["train"] = {
+                self.prefix: score
+            }  
             
             
 class mAPCallback(Callback):
@@ -112,13 +129,13 @@ class mAPCallback(Callback):
         self.model_output_key = model_output_key
         self.prefix = prefix
 
-    def on_loader_start(self, state: State):
+    def on_loader_start(self, state: IRunner):
         self.prediction: List[np.ndarray] = []
         self.target: List[np.ndarray] = []
 
-    def on_batch_end(self, state: State):
-        targ = state.input[self.input_key].detach().cpu().numpy()
-        out = state.output[self.output_key]
+    def on_batch_end(self, state: IRunner):
+        targ = state.batch[self.input_key].detach().cpu().numpy()
+        out = state.batch[self.output_key]
 
         clipwise_output = out[self.model_output_key].detach().cpu().numpy()
 
@@ -131,14 +148,21 @@ class mAPCallback(Callback):
         score = np.nan_to_num(score).mean()
         state.batch_metrics[self.prefix] = score
 
-    def on_loader_end(self, state: State):
+    def on_loader_end(self, state: IRunner):
         y_pred = np.concatenate(self.prediction, axis=0)
         y_true = np.concatenate(self.target, axis=0)
         score = average_precision_score(y_true, y_pred, average=None)
         score = np.nan_to_num(score).mean()
         state.loader_metrics[self.prefix] = score
         if state.is_valid_loader:
-            state.epoch_metrics[state.valid_loader + "_epoch_" +
-                                self.prefix] = score
+            state.epoch_metrics["valid"] = {
+                self.prefix: score
+            }
+            # state.epoch_metrics[state.loader_key + "_epoch_" +
+            #                     self.prefix] = score
         else:
-            state.epoch_metrics["train_epoch_" + self.prefix] = score
+            # state.epoch_metrics["train_epoch_" + self.prefix] = score
+            state.epoch_metrics["train"] = {
+                self.prefix: score
+            }    
+
