@@ -59,10 +59,7 @@ class F1Callback(Callback):
             state.epoch_metrics["valid"] = {
                 self.prefix: score
             }
-            # state.epoch_metrics[state.loader_key + "_epoch_" +
-            #                     self.prefix] = score
         else:
-            # state.epoch_metrics["train_epoch_" + self.prefix] = score
             state.epoch_metrics["train"] = {
                 self.prefix: score
             }            
@@ -108,10 +105,7 @@ class PrecisionCallback(Callback):
             state.epoch_metrics["valid"] = {
                 self.prefix: score
             }
-            # state.epoch_metrics[state.loader_key + "_epoch_" +
-            #                     self.prefix] = score
         else:
-            # state.epoch_metrics["train_epoch_" + self.prefix] = score
             state.epoch_metrics["train"] = {
                 self.prefix: score
             }  
@@ -158,10 +152,7 @@ class mAPCallback(Callback):
             state.epoch_metrics["valid"] = {
                 self.prefix: score
             }
-            # state.epoch_metrics[state.loader_key + "_epoch_" +
-            #                     self.prefix] = score
         else:
-            # state.epoch_metrics["train_epoch_" + self.prefix] = score
             state.epoch_metrics["train"] = {
                 self.prefix: score
             }    
