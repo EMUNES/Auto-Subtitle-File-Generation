@@ -1,6 +1,6 @@
 """Generate audio clips we need for training.
 
-1. Generate 5secs clips for training, wav file format with unique id.
+1. Generate 2secs clips for training, wav file format with unique id.
 2. Generate training csv file corresponding to the whole dataset
 """
 

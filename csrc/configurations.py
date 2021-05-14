@@ -19,7 +19,7 @@ class DatasetConfig(object):
     Configuration for building your own dataset from sources.
     
     Attributes:
-        dataset_clip_time(int): Clip length for dataset. Default 5s.
+        dataset_clip_time(int): Clip length for dataset. Default 2s.
         dataset_sample_rate(int): Clip length for dataset. Default 16000.
         dataset_audio_format(str): Clip format for dataset. Default using "wav"
         sub_encoding(str): Use "utf-8" encoding for Aegisub subtitle support.
