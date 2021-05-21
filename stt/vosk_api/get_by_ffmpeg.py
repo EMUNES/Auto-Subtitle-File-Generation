@@ -23,7 +23,7 @@ def ffmpeg_sst(fname:str, lang:str="eng", model_spec:str="model"):
     if not os.path.exists("model-eng"):
         print ("Please download the model from https://alphacephei.com/vosk/models and unpack as 'model' in the current folder.")
     
-    sample_rate=16000
+    sample_rate=32000
     # Choose the model based on given language or specified model name.
     model = Model(f"model-{lang}") if model_spec=="model" else Model(model_spec)
     rec = KaldiRecognizer(model, sample_rate)

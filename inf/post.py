@@ -53,7 +53,6 @@ class SpeechSeries(object):
 
             pre_node = node
 
-    # TODO: Examine this method.
     def _merge_node(self, n1, n2):
         assert n2.onset >= n1.offset, "Node input order reversed."
         n1.offset = n2.offset

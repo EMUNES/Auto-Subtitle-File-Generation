@@ -144,10 +144,17 @@ class Spectrogram(nn.Module):
 
     
 class LogmelFilterBank(nn.Module):
-    def __init__(self, sr=16000, n_fft=2048, n_mels=64, fmin=50, fmax=14000, is_log=True, 
+    def __init__(self, sr=32000, n_fft=2048, n_mels=64, fmin=50, fmax=14000, is_log=True, 
         ref=1.0, amin=1e-10, top_db=80.0, freeze_parameters=True):
         """Calculate logmel spectrogram using pytorch. The mel filter bank is 
-        the pytorch implementation of as librosa.filters.mel 
+        the pytorch implementation of as librosa.filters.mel.
+        
+        This method is critical for different tasks. In this project,
+        we should set those params carefully to suit the task of human
+        voice recogniation.
+        1. n_mels: 128 and 64 are both reasonable. The performance has not yet been decided.
+        2. fmin and fmax: Should bigger than the range of human voice (100-10000hz).
+        3. sample rate: This must be set the same project-wise.
         """
         super(LogmelFilterBank, self).__init__()
 

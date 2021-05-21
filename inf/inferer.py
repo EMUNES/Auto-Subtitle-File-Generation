@@ -133,7 +133,7 @@ class SttInferer():
         pass
         
     def _voice_recognize(self, onset: float, offset: float, callback=False):
-        """Recognize text in a clip
+        """Recognize text in a clip.
         
         Args:
             onset: The begging of this clip (seconds).
@@ -160,7 +160,7 @@ class SttInferer():
         # Cut the clip out
         
     def make_inference_result(self):
-        """Take SED df and generate text for each row
+        """Take SED df and generate text for each row.
         """
         text_all = []
         
