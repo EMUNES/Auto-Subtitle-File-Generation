@@ -15,6 +15,7 @@ logs
 # docs that need no record
 LOG.md
 INTRO.md
+DEV.md
 
 # static file types
 *.wav
