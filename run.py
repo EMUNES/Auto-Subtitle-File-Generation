@@ -24,6 +24,7 @@ if __name__ == '__main__':
 Valid input such as: 'sample.ass', 'sample', 'sample.srt'. No quote mark needed:\n\
 你希望的输出文件名称和格式（默认是current.ass）。\n\
 合法的文件名如：'sample.ass', 'sample', 'sample.srt'，不需要引号:\n")
+    output_file_name = "current" if not output_file_name else output_file_name
 
     # Choose the lanauge.    
     choices = {}  
@@ -31,8 +32,7 @@ Valid input such as: 'sample.ass', 'sample', 'sample.srt'. No quote mark needed:
         print(f"{i} - {lang_name}")
         choices[str(i)] = lang
     language_idx = input("Choose the lanauage index of your source:\n选择资源语言的对应序号:\n")
-    source_language = choices[language_idx]
-    
+    source_language = choices[language_idx] if language_idx.strip() else "" # If source_language is empty, STT won't work (only timelines will be output).    
     
     print("\nPress 'Enter' if the cli gets stuck for a long time during the procedure.")
     print("如果控制台卡在某个地方长期不动，尝试按一下Enter键。\n")

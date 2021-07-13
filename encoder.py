@@ -3,6 +3,7 @@ Parses the .csv file from inference output and generate subtitle file.
 """
 
 import pandas as pd
+from pandas.io.formats.format import CategoricalFormatter
 
 from config import ROOT_PATH_ABS, SSourceConfig as SSC
 from config import RESULT_FOLDER_ABS
@@ -26,7 +27,11 @@ class Encoder(object):
         self.df = df
         self.start_series = [f"{self._format_time(float(fl))}" for fl in self.df.start]
         self.end_series = [f"{self._format_time(float(fl))}" for fl in self.df.end]
-        self.texts = self.df.recognized_text
+        # If the STT inference stage is skipped. Set default string "xxx"
+        try:
+            self.texts = self.df.recognized_text
+        except:
+            self.texts = ['xxx'] * len(self.start_series)
 
     def _format_time(self, fl):
         """

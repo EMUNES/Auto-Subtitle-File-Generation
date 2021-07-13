@@ -203,7 +203,7 @@ def get_inference(targ_file_path, params_path, fname, lang, post_process=True, o
     model = inferer if inferer else Pannscnn14attInferer
     print(f"Inferencing using model: {model.__name__}...\n")      
     
-    fname = fname if fname else "most-recent-output"
+    fname = fname if fname else "current"
     out_file = f"{output_folder}/{fname}.csv"
     out_src_file = f"{output_folder}/{fname}-all.csv"
     
@@ -228,7 +228,8 @@ def get_inference(targ_file_path, params_path, fname, lang, post_process=True, o
             print("Post process applied.\n")
         
         # Running Speech TO Text based on SED result.
-        output_df = SttInferer(output_df, targ_path=targ_file_path, source_lang=lang).make_inference_result()
+        if lang: # See run.py. If lang is an empty string (no user input) then stt won't run. It works poorly anyway~
+            output_df = SttInferer(output_df, targ_path=targ_file_path, source_lang=lang).make_inference_result()
         
         # Write to local as logs.
         output_df.to_csv(out_file, index=False)
