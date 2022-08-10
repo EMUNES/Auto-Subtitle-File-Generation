@@ -19,10 +19,7 @@ def ffmpeg_sst(fname:str, lang:str="eng", model_spec:str="model"):
     
     # Opne with absolute path to avoid system error.
     fpath = TEMP_FOLDER_ABS + '/' + fname
-        
-    if not os.path.exists("model-eng"):
-        print ("Please download the model from https://alphacephei.com/vosk/models and unpack as 'model' in the current folder.")
-    
+            
     sample_rate=32000
     # Choose the model based on given language or specified model name.
     model = Model(f"model-{lang}") if model_spec=="model" else Model(model_spec)
